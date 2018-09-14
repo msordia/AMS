@@ -4,6 +4,6 @@
 ## Proyecto Taxis Unicos
 
 
-*Mariana Sofia Pena Mier A01193708
-*Roberto Trevino Quiroga A01282035
-*Lazaro Kawer Oreamuno A00821300
+* Mariana Sofia Pena Mier A01193708
+* Roberto Trevino Quiroga A01282035
+* Lazaro Kawer Oreamuno A00821300
