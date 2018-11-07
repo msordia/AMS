@@ -15,6 +15,7 @@ class AdminMain extends Component {
     this.verUsuarios = this.verUsuarios.bind(this);
     this.administrarPrecios = this.administrarPrecios.bind(this);
     this.administrarEncuestas = this.administrarEncuestas.bind(this);
+    this.goBack = this.goBack.bind(this);
   }
 
   administrarTaxis(event) {
@@ -33,12 +34,16 @@ class AdminMain extends Component {
   		this.props.history.push('/adminEncuestas');
   }
 
+  goBack(event) {
+  		this.props.history.goBack();
+  }
+
 
 	render() {
 			return (
-				<div className="App-header">
+				<div className="Main-header">
 						<img src={logo} className="App-logo"alt="logo" />
-						<Grid container alignItems="center">
+						<Grid container>
 							<Grid item xs={12} >
 								<Grid container justify='center' spacing={16} alignItems="center">
 									<Grid key='1' item item xs={3}>
@@ -60,7 +65,7 @@ class AdminMain extends Component {
 								</Grid>
 							</Grid>
 							<Grid container justify='center'>
-								<Button variant="contained" color="primary" onClick={this.administrarTaxis}>
+								<Button variant="contained" color="primary" onClick={this.goBack}>
 				            		Log out
 				          		</Button>
 							</Grid>	

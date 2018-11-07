@@ -6,7 +6,7 @@
   text-align: center;
 }
 
-.App-header {
+.Main-header {
   background-color: #1A2880;
   min-height: 100vh;
   display: flex;
@@ -20,7 +20,8 @@
 .ItemGrid {
 	margin-bottom: 50px;
 	margin-top: 30px;
-	justify-content: 'center';
+	justify-content: center;
+	align-items: stretch;
 }
 
 .Test {
