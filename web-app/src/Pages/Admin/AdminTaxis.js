@@ -9,6 +9,7 @@ import TableRow from '@material-ui/core/TableRow';
 import logo from '../../assets/transpais_logo.png';
 import Paper from '@material-ui/core/Paper';
 import { withRouter } from 'react-router-dom';
+import Typography from '@material-ui/core/Typography';
 import './AdminTaxis.css';
 
 let id = 0;
