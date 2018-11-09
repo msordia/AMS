@@ -4,6 +4,7 @@ import ItemCard from '../components/ItemCard.js';
 import logo from '../assets/transpais_logo.png';
 import Grid from '@material-ui/core/Grid';
 import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 import './AdminMain.css';
 
 
@@ -43,6 +44,10 @@ class AdminMain extends Component {
 			return (
 				<div className="Main-header">
 						<img src={logo} className="App-logo"alt="logo" />
+						<div>
+							Hi {this.props.userName}, Hope you are doing well.
+							This is your ID: {this.props.userId}
+						</div>
 						<Grid container>
 							<Grid item xs={12} >
 								<Grid container justify='center' spacing={16} alignItems="center">
@@ -76,4 +81,18 @@ class AdminMain extends Component {
 
 }
 
-export default withRouter(AdminMain);
+const mapStateToProps = state => {
+  return {
+    loggedIn: state.loggedIn,
+    userName: state.userName,
+    userId: state.userId
+  };
+};
+
+const mapDispatchtoProps = dispatch => {
+  return {
+      tryLogIn: (uId, userName) => dispatch({type: 'LogIn', payload: {loggedIn: true, uId: uId, userName: userName}})
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchtoProps)(withRouter(AdminMain));

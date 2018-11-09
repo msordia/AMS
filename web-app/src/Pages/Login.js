@@ -3,6 +3,7 @@ import logo from '../assets/transpais_logo.png';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 import '../App.css';
 
 class Login extends Component {
@@ -27,6 +28,8 @@ class Login extends Component {
   }
 
   logIn(event) {
+    console.log('LoggedIn' + this.props.loggedIn);
+    this.props.tryLogIn(0, this.state.username);
     this.props.history.push('/administrador');
     console.log('Your username is ' +  this.state.username + ' and password is ' + this.state.password);
   }
@@ -75,4 +78,16 @@ class Login extends Component {
 
 }
 
-export default withRouter(Login);
+const mapStateToProps = state => {
+  return {
+    loggedIn: state.loggedIn
+  };
+};
+
+const mapDispatchtoProps = dispatch => {
+  return {
+      tryLogIn: (uId, userName) => dispatch({type: 'LogIn', payload: {loggedIn: true, uId: uId, userName: userName}})
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchtoProps)(withRouter(Login));
