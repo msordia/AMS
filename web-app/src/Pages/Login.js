@@ -52,6 +52,7 @@ class Login extends Component {
                 variant="filled"
                 onChange={this.changeUsername}
                 value={this.state.username}
+                color="inherit"
                 />
             </form>
 
@@ -60,6 +61,9 @@ class Login extends Component {
               id="password"
               label="password"
               className="TextFieldS"
+              InputProps={{
+                className: "TextFieldInput"
+              }}
               type="password"
               margin="dense"
               variant="filled"

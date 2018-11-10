@@ -35,8 +35,11 @@
 }
 
 .TextFieldS {
-  color:white;
-  border-color:white;
+  background: "white";
+}
+
+.TextFieldInput {
+  color: "white";
 }
 
 @keyframes App-logo-spin {
