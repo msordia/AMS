@@ -8,7 +8,7 @@ class PageHeader extends Component {
 render() {
 	return(
 		<div>
-			<div className="Admin-header">
+			<div className="Page-header">
 				<img src={logo} className="Admin-Logo"alt="logo" />
 				<Typography variant="h5" component="h3" className="Admin-bienvenido" color="inherit">
 			        {this.props.Description}

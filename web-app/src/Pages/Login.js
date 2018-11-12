@@ -72,9 +72,14 @@ class Login extends Component {
               />
             </form>
           </div>
-          <Button variant="contained" color="primary" onClick={this.logIn}>
-            Log In
-          </Button>
+          <div>
+            <Button variant="contained" color="primary" onClick={this.logIn} className="Login_Button">
+              Log In
+            </Button>
+            <Button variant="contained" color="primary" onClick={this.logIn} className="Login_Button">
+              Register
+            </Button>
+          </div>
         </header>
       </div>
     );

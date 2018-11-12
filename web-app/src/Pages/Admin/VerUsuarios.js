@@ -10,6 +10,7 @@ import logo from '../../assets/transpais_logo.png';
 import Paper from '@material-ui/core/Paper';
 import { withRouter } from 'react-router-dom';
 import './AdminTaxis.css';
+import PageHeader from '../../components/PageHeader'
 
 let id = 0;
 function createData(nombre, correo) {
@@ -52,42 +53,48 @@ class VerUsuario extends Component {
   	}
 
 	render() {
-			return (<div className="Taxista-header">	
-				<img src={logo} className="App-logo"alt="logo" />
-					<Button variant="contained" color="primary" onClick={this.backAdmin} className='GoBackB'>
-							Go Back
-					</Button>
-				<Card className='PaperStyle'>
-			      <Table>
-			        <TableHead>
-			          <TableRow>
-			            <TableCell>ID</TableCell>
-			            <TableCell numeric>Nombre</TableCell>
-			            <TableCell numeric>Correo</TableCell>
-			            <TableCell>Ver Detalles</TableCell>
-			          </TableRow>
-			        </TableHead>
-			        <TableBody>
-			          {rows.map(row => {
-			            return (
-			              <TableRow key={row.id}>
-			              <TableCell numeric>{row.id}</TableCell>
-			                <TableCell component="th" scope="row">
-			                  {row.nombre}
-			                </TableCell>
-			                <TableCell numeric>{row.correo}</TableCell>
-			                <TableCell> 
-			                	<Button variant="contained" color="primary" onClick={this.backAdmin}>
-			                		Ir
-			                	</Button>
-			                </TableCell>
-			              </TableRow>
-			            );
-			          })}
-			        </TableBody>
-			      </Table>
-			    </Card>
-			</div>
+			return (
+				<div>
+					<PageHeader Description="Administrar Usuarios" />
+					<div className="Taxista-body">	
+						<div className="GoBackB">
+							
+							<Button variant="contained" color="primary" onClick={this.backAdmin} className="GoBackB">
+								Go Back
+							</Button>
+						</div>
+						<Card className='PaperStyle'>
+					      <Table>
+					        <TableHead>
+					          <TableRow>
+					            <TableCell>ID</TableCell>
+					            <TableCell numeric>Nombre</TableCell>
+					            <TableCell numeric>Correo</TableCell>
+					            <TableCell>Ver Detalles</TableCell>
+					          </TableRow>
+					        </TableHead>
+					        <TableBody>
+					          {rows.map(row => {
+					            return (
+					              <TableRow key={row.id}>
+					              <TableCell numeric>{row.id}</TableCell>
+					                <TableCell component="th" scope="row">
+					                  {row.nombre}
+					                </TableCell>
+					                <TableCell numeric>{row.correo}</TableCell>
+					                <TableCell> 
+					                	<Button variant="contained" color="primary" onClick={this.backAdmin}>
+					                		Ir
+					                	</Button>
+					                </TableCell>
+					              </TableRow>
+					            );
+					          })}
+					        </TableBody>
+					      </Table>
+					    </Card>
+					</div>
+				</div>
 			);
 		}
 

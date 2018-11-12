@@ -7,7 +7,7 @@
 }
 
 .Main-header {
-  background-color: #1A2880;
+  background-color: #1a57ba;
   min-height: 90vh;
   display: flex;
   flex-direction: column;
@@ -55,4 +55,16 @@
 .Admin-bienvenido {
   padding-top: 25px;
   padding-bottom: 25px;
+}
+
+.Page-header {
+   background-color: #1A2880;
+   min-height: 5vh;
+   display: flex;
+   flex-direction: row-reverse;
+   color:white;
+   justify-content: space-between;
+   align-items: center;
+   padding-right: 25px;
+   padding-left: 25px;
 }

@@ -42,6 +42,11 @@
   color: "white";
 }
 
+.Login_Button {
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
