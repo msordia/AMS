@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
+import axios from 'axios'
 import logo from '../assets/transpais_logo.png';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import '../App.css';
+
+const url = 'http://127.0.0.1:5000'
 
 class Login extends Component {
 
@@ -29,6 +32,20 @@ class Login extends Component {
 
   logIn(event) {
     console.log('LoggedIn' + this.props.loggedIn);
+    axios.get(`${url}/login`, {
+	params: {
+	  username: this.state.username,
+	  password: this.state.password	
+	}
+	})
+	.then(function (response){
+		console.log(response);
+		const resJson = response.data[0];
+		console.log(resJson);
+		})
+	.catch(function (error){
+		console.log(error);
+	})
     this.props.tryLogIn(0, this.state.username);
     this.props.history.push('/administrador');
     console.log('Your username is ' +  this.state.username + ' and password is ' + this.state.password);
@@ -73,7 +90,7 @@ class Login extends Component {
             </form>
           </div>
           <div>
-            <Button variant="contained" color="primary" onClick={this.logIn} className="Login_Button">
+           <Button variant="contained" color="primary" onClick={this.logIn} className="Login_Button">
               Log In
             </Button>
             <Button variant="contained" color="primary" onClick={this.logIn} className="Login_Button">
