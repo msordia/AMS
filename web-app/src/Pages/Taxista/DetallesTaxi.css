@@ -1,0 +1,16 @@
+.PreMainPaper {
+	padding-right: 20vw;
+	padding-left: 20vw;
+	padding-top: 10vh;
+	padding-bottom: 10vh;
+}
+
+.InnerPaperDivider {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.InnerPaperPadd {
+	padding-top: 20px;
+	padding-bottom: 20px;
+}

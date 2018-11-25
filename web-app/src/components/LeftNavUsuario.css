@@ -1,0 +1,10 @@
+.LeftNavTax {
+	background-color: #1A2880;
+	min-height: 90vh;
+	justify-content: space-around;
+	flex-direction: column;
+	flex: 1;
+	display: flex;
+	padding-left: 10px;
+	padding-right: 10px;
+}

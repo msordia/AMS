@@ -5,6 +5,10 @@ import AdminTaxis from './Pages/Admin/AdminTaxis.js';
 import AdminEncuestas from './Pages/Admin/AdminEncuestas.js';
 import AdminPrecios from './Pages/Admin/AdminPrecios.js';
 import VerUsuarios from './Pages/Admin/VerUsuarios.js';
+import DetallesTaxi from './Pages/Taxista/DetallesTaxi';
+import HistorialTaxi from './Pages/Taxista/HistorialTaxi';
+import DetallesUsuario from './Pages/Usuario/DetallesUsuario';
+import HistorialUsuario from './Pages/Usuario/HistorialUsuario';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 
@@ -31,32 +35,56 @@ class App extends Component {
             <Route
               exact
               path ='/administrador'
-              render={(uId) => (
+              render={() => (
                   <AdminMain/>
                 )} />
                <Route
               exact
               path ='/adminTaxis'
-              render={(uId) => (
+              render={() => (
                   <AdminTaxis/>
                 )} />
               <Route
               exact
               path ='/adminEncuestas'
-              render={(uId) => (
+              render={() => (
                   <AdminEncuestas/>
                 )} />
               <Route
               exact
               path ='/adminPrecios'
-              render={(uId) => (
+              render={() => (
                   <AdminPrecios/>
                 )} />
               <Route
               exact
               path ='/adminUsuarios'
-              render={(uId) => (
+              render={() => (
                   <VerUsuarios/>
+                )} />
+              <Route
+              exact
+              path ='/detallesTaxi'
+              render={() => (
+                  <DetallesTaxi/>
+                )} />
+              <Route
+              exact
+              path ='/historialTaxi'
+              render={() => (
+                  <HistorialTaxi/>
+                )} />
+              <Route
+              exact
+              path ='/detallesUsuario'
+              render={() => (
+                  <DetallesUsuario/>
+                )} />
+              <Route
+              exact
+              path ='/historialUsuario'
+              render={() => (
+                  <HistorialUsuario/>
                 )} />
           </Switch>
         </Router>

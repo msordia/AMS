@@ -40,14 +40,14 @@ class Login extends Component {
 	})
 	.then(function (response){
 		console.log(response);
-		const resJson = response.data[0];
+		const resJson = response.data;
 		console.log(resJson);
 		})
 	.catch(function (error){
 		console.log(error);
 	})
     this.props.tryLogIn(0, this.state.username);
-    this.props.history.push('/administrador');
+    this.props.history.push('/detallesUsuario');
     console.log('Your username is ' +  this.state.username + ' and password is ' + this.state.password);
   }
 
@@ -94,7 +94,7 @@ class Login extends Component {
               Log In
             </Button>
             <Button variant="contained" color="primary" onClick={this.logIn} className="Login_Button">
-              Register
+              Crear Usuario
             </Button>
           </div>
         </header>
