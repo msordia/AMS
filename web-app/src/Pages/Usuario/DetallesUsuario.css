@@ -14,3 +14,12 @@
 	padding-top: 20px;
 	padding-bottom: 20px;
 }
+
+.ButtonsDetalles {
+	justify-content: space-between;
+	flex-direction: row;
+	flex: 1;
+	display: flex;
+	padding-right: 30vw;
+	padding-left: 30vw;
+}

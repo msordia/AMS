@@ -11,6 +11,7 @@ import DetallesUsuario from './Pages/Usuario/DetallesUsuario';
 import HistorialUsuario from './Pages/Usuario/HistorialUsuario';
 import ActualizarPerfil from './Pages/ActualizarPerfil';
 import RegistrarUsuario from './Pages/Usuario/RegistrarUsuario';
+import RegistrarFormaDePago from './Pages/Usuario/RegistrarFormaDePago';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 
@@ -99,6 +100,12 @@ class App extends Component {
               path ='/registrarUsuario'
               render={() => (
                   <RegistrarUsuario/>
+                )} />
+               <Route
+              exact
+              path ='/registrarFormaDePago'
+              render={() => (
+                  <RegistrarFormaDePago/>
                 )} />
           </Switch>
         </Router>

@@ -16,6 +16,10 @@ class DetallesUsuario extends Component {
 		this.props.history.push('/actualizarPerfil');
 	}
 
+	registrarFormaDePago = () => {
+		this.props.history.push('/registrarFormaDePago');
+	}
+
 	render() {
 		return(
 			<div>
@@ -47,9 +51,14 @@ class DetallesUsuario extends Component {
 								</div>
 							</Paper>
 						</div>
-						<Button variant="contained" color="primary" onClick={this.actualizarPerfil} className="Login_Button">
-		              		Actualizar Perfil
-		            	</Button>
+						<div className="ButtonsDetalles">
+							<Button variant="contained" color="primary" onClick={this.actualizarPerfil} className="Login_Button">
+			              		Actualizar Perfil
+			            	</Button>
+			            	<Button variant="contained" color="primary" onClick={this.registrarFormaDePago} className="Login_Button">
+			              		Registrar forma de pago
+			            	</Button>
+		            	</div>
 					</Grid>
 				</Grid>
 				Hello
