@@ -9,6 +9,8 @@ import DetallesTaxi from './Pages/Taxista/DetallesTaxi';
 import HistorialTaxi from './Pages/Taxista/HistorialTaxi';
 import DetallesUsuario from './Pages/Usuario/DetallesUsuario';
 import HistorialUsuario from './Pages/Usuario/HistorialUsuario';
+import ActualizarPerfil from './Pages/ActualizarPerfil';
+import RegistrarUsuario from './Pages/Usuario/RegistrarUsuario';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 
@@ -85,6 +87,18 @@ class App extends Component {
               path ='/historialUsuario'
               render={() => (
                   <HistorialUsuario/>
+                )} />
+              <Route
+              exact
+              path ='/actualizarPerfil'
+              render={() => (
+                  <ActualizarPerfil/>
+                )} />
+              <Route
+              exact
+              path ='/registrarUsuario'
+              render={() => (
+                  <RegistrarUsuario/>
                 )} />
           </Switch>
         </Router>

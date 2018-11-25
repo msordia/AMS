@@ -51,6 +51,10 @@ class Login extends Component {
     console.log('Your username is ' +  this.state.username + ' and password is ' + this.state.password);
   }
 
+  registrarse = () => {
+    this.props.history.push('/registrarUsuario');
+  }
+
   render() {
     return (
       <div className="App">
@@ -93,7 +97,7 @@ class Login extends Component {
            <Button variant="contained" color="primary" onClick={this.logIn} className="Login_Button">
               Log In
             </Button>
-            <Button variant="contained" color="primary" onClick={this.logIn} className="Login_Button">
+            <Button variant="contained" color="primary" onClick={this.registrarse} className="Login_Button">
               Crear Usuario
             </Button>
           </div>

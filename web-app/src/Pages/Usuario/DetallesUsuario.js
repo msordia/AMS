@@ -4,11 +4,18 @@ import Grid from '@material-ui/core/Grid';
 import PageHeader from '../../components/PageHeader';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
+import Button from '@material-ui/core/Button';
 import LeftNavUsuario from '../../components/LeftNavUsuario';
+import { withRouter } from 'react-router-dom';
 
 import './DetallesUsuario.css';
 
 class DetallesUsuario extends Component {
+
+	actualizarPerfil = () => {
+		this.props.history.push('/actualizarPerfil');
+	}
+
 	render() {
 		return(
 			<div>
@@ -40,6 +47,9 @@ class DetallesUsuario extends Component {
 								</div>
 							</Paper>
 						</div>
+						<Button variant="contained" color="primary" onClick={this.actualizarPerfil} className="Login_Button">
+		              		Actualizar Perfil
+		            	</Button>
 					</Grid>
 				</Grid>
 				Hello
@@ -50,4 +60,4 @@ class DetallesUsuario extends Component {
 }
 
 
-export default DetallesUsuario;
+export default withRouter(DetallesUsuario);

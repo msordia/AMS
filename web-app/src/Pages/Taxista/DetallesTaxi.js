@@ -3,6 +3,7 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import PageHeader from '../../components/PageHeader';
 import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 import LeftNavTaxista from '../../components/LeftNavTaxista';
 
@@ -62,6 +63,9 @@ class DetallesTaxi extends Component {
 								</div>
 							</Paper>
 						</div>
+						<Button variant="contained" color="primary" onClick={this.logout} className="Login_Button">
+		              		Actualizar Perfil
+		            	</Button>
 					</Grid>
 				</Grid>
 				Hello
