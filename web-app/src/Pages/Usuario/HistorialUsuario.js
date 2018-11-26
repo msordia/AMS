@@ -73,11 +73,6 @@ class HistorialUsuario extends Component {
 						</Grid>
 						<Grid item xs={11}>
 						<div className="HistorialBody">	
-							<div className="GoBackB">
-								<Button variant="contained" color="primary" onClick={this.backAdmin} className="GoBackB">
-									Go Back
-								</Button>
-							</div>
 							<Card className='PaperStyle'>
 						      <Table>
 						        <TableHead>
@@ -100,17 +95,17 @@ class HistorialUsuario extends Component {
 						              <TableCell >{row.origen}</TableCell>
 						              <TableCell >{row.destino}</TableCell>
 						              <TableCell >{row.costo}</TableCell>
-						                <TableCell> 
-						                	<Button variant="contained" color="primary" onClick={this.backAdmin}>
-						                		Ir
-						                	</Button>
-						                </TableCell>
 						              </TableRow>
 						            );
 						          })}
 						        </TableBody>
 						      </Table>
 						    </Card>
+							</div>
+							<div className="GoBackB">
+								<Button variant="contained" color="primary" onClick={this.backAdmin} className="GoBackB">
+									Regresar
+								</Button>
 						</div>
 						</Grid>
 					</Grid>
