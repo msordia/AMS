@@ -12,6 +12,7 @@ import HistorialUsuario from './Pages/Usuario/HistorialUsuario';
 import ActualizarPerfil from './Pages/ActualizarPerfil';
 import RegistrarUsuario from './Pages/Usuario/RegistrarUsuario';
 import RegistrarFormaDePago from './Pages/Usuario/RegistrarFormaDePago';
+import ViajeActualUsuario from './Pages/Usuario/ViajeActualUsuario';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 
@@ -106,6 +107,12 @@ class App extends Component {
               path ='/registrarFormaDePago'
               render={() => (
                   <RegistrarFormaDePago/>
+                )} />
+              <Route
+              exact
+              path ='/viajeActualUsuario'
+              render={() => (
+                  <ViajeActualUsuario/>
                 )} />
           </Switch>
         </Router>
