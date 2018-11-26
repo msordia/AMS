@@ -7,6 +7,7 @@ import Divider from '@material-ui/core/Divider';
 import Button from '@material-ui/core/Button';
 import LeftNavUsuario from '../../components/LeftNavUsuario';
 import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import './DetallesUsuario.css';
 
