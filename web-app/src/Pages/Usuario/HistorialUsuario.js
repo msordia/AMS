@@ -45,8 +45,7 @@ class HistorialUsuario extends Component {
   		axios.get(`${url}/historialCliente`, {
   			params: {
   				idCliente: this.props.ID
-  			}}
-  		})
+  			}})
   		.then((response) => {
   			const resJson = response.data;
   			viajesData = resJson.map(viaje => {
