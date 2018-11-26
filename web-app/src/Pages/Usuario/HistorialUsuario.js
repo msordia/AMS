@@ -48,13 +48,13 @@ class HistorialUsuario extends Component {
   			}})
   		.then((response) => {
   			const resJson = response.data;
-  			viajesData = resJson.map(viaje => {
+  			const viajesData = resJson.map(viaje => {
   				return (
-  				createFata(viaje.id_viaje, viaje.nombre, viaje.fecha, viaje.origen, viaje.destino, viaje.costo);
+  				createData(viaje.id_viaje, viaje.nombre, viaje.fecha, viaje.origen, viaje.destino, viaje.costo)
   				)
   			})
   			this.setState({
-  				data: viajesData;
+  				data: viajesData
   			})
   		})
   	}
