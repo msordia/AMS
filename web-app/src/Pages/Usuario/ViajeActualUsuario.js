@@ -62,6 +62,13 @@ class ViajeActualUsuario extends Component {
 						<Typography variant="h5" component="h3">
 							No esta en un viaje
 						</Typography>
+						<div className="InnerPaperDivider">
+										<Divider />
+										<Divider />
+						</div>
+						<Typography variant="h5" component="h3">
+							Crea Tu Viaje!
+						</Typography>
 					</Paper>
 					</div>
 				);
