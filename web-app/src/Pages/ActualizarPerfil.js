@@ -34,7 +34,9 @@ class ActualizarPerfil extends Component {
 		})
 		.then((response) => {
 			if(response.data == "Done"){
-				this.props.history.goBack();			}
+				this.props.history.goBack();
+				this.props.actualizarPerfil(nombre, correo, sexo, telefono);
+			}
 		})
 	}
 
@@ -127,7 +129,7 @@ const mapStateToProps = state => {
 
 const mapDispatchtoProps = dispatch => {
   return {
-      tryLogIn: (ID, correo, Nombre, FechaNacimiento, Sexo, Telefono) => dispatch({type: 'LogIn', payload: {loggedIn: true, ID, correo, Nombre, FechaNacimiento, Sexo, Telefono}})
+      actualizarPerfil: (nombre, correo, sexo, telefono) => dispatch({type:'actualizarPefil', payload: { nombre, correo, sexo, telefono }})
   };
 };
 
