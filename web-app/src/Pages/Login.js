@@ -31,7 +31,6 @@ class Login extends Component {
   }
 
   logIn(event) {
-    console.log('LoggedIn' + this.props.loggedIn);
     axios.get(`${url}/login`, {
 	params: {
 	  username: this.state.username,
@@ -39,15 +38,28 @@ class Login extends Component {
 	}
 	})
 	.then(function (response){
-		console.log(response);
 		const resJson = response.data;
-		console.log(resJson);
+    if(resJson == "Invalid Login"){
+      this.setState({
+        username: '',
+        password: ''
+      })
+    }
+    if(resJson.tipo == "Taxista"){
+      this.props.history.push('/detallesTaxi');
+    }
+    if(resJson.tipo == "Cliente"){
+      this.props.history.push('/detallesUsuario');
+    }
+    if(resJson.tipo == "Administrador"){
+      this.props.history.push('/administrador');
+    }
 		})
 	.catch(function (error){
 		console.log(error);
 	})
-    this.props.tryLogIn(0, this.state.username);
-    this.props.history.push('/detallesUsuario');
+    //this.props.tryLogIn(0, this.state.username);
+    
     console.log('Your username is ' +  this.state.username + ' and password is ' + this.state.password);
   }
 
