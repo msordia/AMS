@@ -6,21 +6,21 @@ import PageHeader from '../../components/PageHeader';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import Button from '@material-ui/core/Button';
-import LeftNavUsuario from '../../components/LeftNavUsuario';
+import LeftNavTaxista from '../../components/LeftNavTaxista';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import TextField from '@material-ui/core/TextField';
 
-import './DetallesUsuario.css';
+import './DetallesTaxi.css';
 const url = 'http://127.0.0.1:5000'
 
-class ViajeActualUsuario extends Component {
+class ViajeActualTaxista extends Component {
 
 	constructor(props){
 		super(props);
 		this.state = {
 			viajeActual: false,
-			nombreTaxi: '',
+			nombreCliente: '',
 			origen: '',
 			destino: '',
 			costo: -1,
@@ -30,7 +30,7 @@ class ViajeActualUsuario extends Component {
 	}
  
 	componentDidMount() {
-		axios.get(`${url}/actualCliente`, {
+		axios.get(`${url}/actualTaxista`, {
 			params: {
 				idCliente: this.props.ID
 			}
@@ -42,7 +42,7 @@ class ViajeActualUsuario extends Component {
 			}
 			else {
 				this.setState({
-					nombreTaxi: resJson.nombre,
+					nombreCliente: resJson.nombre,
 					origen: resJson.origen,
 					destino: resJson.destino,
 					costo: resJson.costo,
@@ -61,52 +61,8 @@ class ViajeActualUsuario extends Component {
 					<div className="PreMainPaper">
 					<Paper className="InnerPaper">
 						<Typography variant="h5" component="h3">
-							No esta en un viaje
+							No esta en un viaje actualmente
 						</Typography>
-						<div className="InnerPaperDivider">
-										<Divider />
-										<Divider />
-						</div>
-						<Typography variant="h5" component="h3">
-							Crea Tu Viaje!
-						</Typography>
-						<TextField
-			                id="Origen"
-			                label="Origen"
-			                className="TextFieldS"
-			                margin="dense"
-			                variant="outlined"
-			                onChange={(input) => {this.setState({ origen: input.target.value })}}
-			                fullWidth
-			                value={this.state.origen}
-			                color="primary"
-			            />
-			            <TextField
-			                id="Destino"
-			                label="Destino"
-			                className="TextFieldS"
-			                margin="dense"
-			                variant="outlined"
-			                onChange={(input) => {this.setState({ destino: input.target.value })}}
-			                fullWidth
-			                value={this.state.destino}
-			                color="primary"
-			            />
-			            <TextField
-			                id="Fecha"
-			                label="Fecha"
-			                className="TextFieldS"
-			                margin="dense"
-			                variant="outlined"
-			                type="date"
-			                onChange={(input) => {this.setState({ fecha: input.target.value })}}
-			                fullWidth
-			                value={this.state.fecha}
-			                color="primary"
-			            />
-			            <Button variant="contained" color="primary" onClick={this.actualizarPerfil} className="Login_Button">
-			              		Crear Viaje
-			            </Button>
 					</Paper>
 					</div>
 				);
@@ -125,7 +81,7 @@ class ViajeActualUsuario extends Component {
 										<Divider />
 									</div>
 									<Typography variant="h5" component="h3">
-										Nombre del Taxista: {this.state.nombreTaxi}
+										Nombre del Cliente: {this.state.nombreCliente}
 									</Typography>
 									<Typography variant="h5" component="h3">
 										Origen: {this.state.origen}
@@ -159,7 +115,7 @@ class ViajeActualUsuario extends Component {
 				<PageHeader Description="Viaje Actual"/>
 				<Grid container>
 					<Grid item xs={1}>
-						<LeftNavUsuario />
+						<LeftNavTaxista />
 					</Grid>
 					<Grid item xs={11}>
 						{this.renderViajeActual()}
@@ -189,4 +145,4 @@ const mapDispatchtoProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchtoProps)(withRouter(ViajeActualUsuario));
+export default connect(mapStateToProps, mapDispatchtoProps)(withRouter(ViajeActualTaxista));

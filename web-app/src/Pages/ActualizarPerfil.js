@@ -6,6 +6,7 @@ import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import PageHeader from '../components/PageHeader';
+import { connect } from 'react-redux';
 
 import './ActualizarPerfil.css';
 
@@ -14,10 +15,11 @@ class ActualizarPerfil extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			Nombre: '',
-			FechaDeNacimiento: '0000-00-00',
-			Sexo: '',
-			Correo: '',
+			Nombre: this.props.Nombre,
+			FechaDeNacimiento: this.props.FechaNacimiento,
+			Sexo: this.props.Sexo,
+			Correo: this.props.correo,
+			Telefono: this.props.Telefono
 		}
 	}
 
@@ -47,15 +49,14 @@ class ActualizarPerfil extends Component {
 					                color="primary"
 					            />
 					             <TextField
-					                id="FechaDeNacimiento"
-					                label="Fecha de Nacimiento"
+					                id="Telefono"
+					                label="Telefono"
 					                className="TextFieldS"
 					                margin="dense"
 					                variant="outlined"
-					                type="date"
-					                onChange={(input) => {this.setState({ FechaDeNacimiento: input.target.value })}}
+					                onChange={(input) => {this.setState({ Telefono: input.target.value })}}
 					                fullWidth
-					                value={this.state.FechaDeNacimiento}
+					                value={this.state.Telefono}
 					                color="primary"
 					            />
 					            <TextField
@@ -97,4 +98,23 @@ class ActualizarPerfil extends Component {
 
 }
 
-export default withRouter(ActualizarPerfil);
+const mapStateToProps = state => {
+  return {
+    loggedIn: state.userReducer.loggedIn,
+    ID: state.userReducer.ID,
+    correo: state.userReducer.correo,
+    Nombre: state.userReducer.Nombre,
+    FechaNacimiento: state.userReducer.FechaNacimiento,
+    Sexo: state.userReducer.Sexo,
+    Telefono: state.userReducer.Telefono
+  };
+};
+
+const mapDispatchtoProps = dispatch => {
+  return {
+      tryLogIn: (ID, correo, Nombre, FechaNacimiento, Sexo, Telefono) => dispatch({type: 'LogIn', payload: {loggedIn: true, ID, correo, Nombre, FechaNacimiento, Sexo, Telefono}})
+  };
+};
+
+
+export default connect(mapStateToProps, mapDispatchtoProps)(withRouter(ActualizarPerfil));

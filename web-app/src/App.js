@@ -13,6 +13,7 @@ import ActualizarPerfil from './Pages/ActualizarPerfil';
 import RegistrarUsuario from './Pages/Usuario/RegistrarUsuario';
 import RegistrarFormaDePago from './Pages/Usuario/RegistrarFormaDePago';
 import ViajeActualUsuario from './Pages/Usuario/ViajeActualUsuario';
+import ViajeActualTaxista from './Pages/Taxista/ViajeActualTaxista';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 
@@ -113,6 +114,12 @@ class App extends Component {
               path ='/viajeActualUsuario'
               render={() => (
                   <ViajeActualUsuario/>
+                )} />
+              <Route
+              exact
+              path ='/viajeActualTaxi'
+              render={() => (
+                  <ViajeActualTaxista/>
                 )} />
           </Switch>
         </Router>

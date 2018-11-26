@@ -23,14 +23,6 @@ function createData(id, nombreTaxista, fecha, origen, destino, costo) {
   return { id, nombreTaxista, fecha, origen, destino, costo};
 }
 
-  const rows = [
-    createData('Osvaldo', '2017-10-25 8:36', 'Nuevo Sur', 'ITESM', 30.14),
-    createData('Osvaldo', '2017-10-25 8:36', 'Nuevo Sur', 'ITESM', 30.14),
-    createData('Osvaldo', '2017-10-25 8:36', 'Nuevo Sur', 'ITESM', 30.14),
-    createData('Osvaldo', '2017-10-25 8:36', 'Nuevo Sur', 'ITESM', 30.14),
-];
-
-
 class HistorialUsuario extends Component {
 
 	constructor(props) {
