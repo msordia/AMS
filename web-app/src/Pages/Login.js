@@ -46,16 +46,16 @@ class Login extends Component {
       });
     }
     if(resJson.tipo == "Taxista"){
+      this.props.tryLogIn(resJson.ID, resJson.username, resJson.nombre, resJson.fechaDeNacimiento, resJson.sexo, resJson.telefono);
       this.props.history.push('/detallesTaxi');
-      this.props.tryLogIn(ID, correo, Nombre, FechaNacimiento, Sexo, Telefono);
     }
     if(resJson.tipo == "Cliente"){
+      this.props.tryLogIn(resJson.id, resJson.username, resJson.nombre, resJson.fechaDeNacimiento, resJson.sexo, resJson.telefono, resJson.id_forma)
       this.props.history.push('/detallesUsuario');
-      this.props.tryLogIn(ID, correo, Nombre, FechaNacimiento, Sexo Telefono, IDForma)
     }
     if(resJson.tipo == "Administrador"){
+      this.props.tryLogIn(resJson.id, resJson.username, resJson.nombre, resJson.fechaDeNacimiento, resJson.sexo, resJson.telefono);
       this.props.history.push('/administrador');
-      this.props.tryLogIn(ID, correo, Nombre, FechaNacimiento, Sexo, Telefono);
     }
 		})
 	.catch(function (error){
