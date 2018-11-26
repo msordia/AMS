@@ -92,12 +92,12 @@ class HistorialTaxi extends Component {
 						        </TableBody>
 						      </Table>
 						    </Card>
-						    <div className="GoBackB">
+						</div>
+						<div className="GoBackB">
 								<Button variant="contained" color="primary" onClick={this.backAdmin} className="GoBackB">
 									Go Back
 								</Button>
 							</div>
-						</div>
 						</Grid>
 					</Grid>
 				</div>

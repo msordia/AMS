@@ -51,6 +51,7 @@ class Login extends Component {
     }
     if(resJson.tipo == "Cliente"){
       this.props.tryLogIn(resJson.id, resJson.username, resJson.nombre, resJson.fechaDeNacimiento, resJson.sexo, resJson.telefono);
+      this.props.taxiLogIn(resJson.marca, resJson.modelo, resJson.placas, resJson.color);
       this.props.history.push('/detallesUsuario');
     }
     if(resJson.tipo == "Administrador"){
@@ -130,7 +131,9 @@ const mapStateToProps = state => {
 
 const mapDispatchtoProps = dispatch => {
   return {
-      tryLogIn: (ID, correo, Nombre, FechaNacimiento, Sexo, Telefono) => dispatch({type: 'LogIn', payload: {loggedIn: true, ID, correo, Nombre, FechaNacimiento, Sexo, Telefono}})
+      tryLogIn: (ID, correo, Nombre, FechaNacimiento, Sexo, Telefono) => dispatch({type: 'LogIn', payload: {loggedIn: true, ID, correo, Nombre, FechaNacimiento, Sexo, Telefono}}),
+      taxiLogIn: (Modelo, Marca, Placas, Color) => dispatch({type: 'TaxiLogIn', payload: { Modelo, Marca, Placas, Color }})
+      
   };
 };
 

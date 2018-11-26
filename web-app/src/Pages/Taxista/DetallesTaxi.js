@@ -48,19 +48,16 @@ class DetallesTaxi extends Component {
 										Taxi
 									</Typography>
 									<Typography variant="h5" component="h3">
-										Folio: 1123
+										Marca: {this.props.Marca}
 									</Typography>
 									<Typography variant="h5" component="h3">
-										Marca: Toyota
+										Modelo: {this.props.Modelo}
 									</Typography>
 									<Typography variant="h5" component="h3">
-										Modelo: Corolla
+										Placas: {this.props.Placas}
 									</Typography>
 									<Typography variant="h5" component="h3">
-										Placas: SLS-98-54
-									</Typography>
-									<Typography variant="h5" component="h3">
-										Color: Rojo
+										Color: {this.props.Color}
 									</Typography>
 								</div>
 							</Paper>
@@ -86,7 +83,11 @@ const mapStateToProps = state => {
     Nombre: state.userReducer.Nombre,
     FechaNacimiento: state.userReducer.FechaNacimiento,
     Sexo: state.userReducer.Sexo,
-    Telefono: state.userReducer.Telefono
+    Telefono: state.userReducer.Telefono,
+    Marca: state.taxiReducer.Marca,
+    Modelo: state.taxiReducer.Modelo,
+    Placas: state.taxiReducer.Placas,
+    Color: state.taxiReducer.Color
   };
 };
 
