@@ -97,4 +97,4 @@ const mapDispatchtoProps = dispatch => {
 };
 
 
-export default connect(mapStateToProps, mapDispatchtoProps)(withRouter(DetallesUsuario));
+export default connect(mapStateToProps, mapDispatchtoProps)(withRouter(DetallesTaxi));
