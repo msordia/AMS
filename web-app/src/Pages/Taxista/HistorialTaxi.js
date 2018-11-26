@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios'
 import Table from '@material-ui/core/Table';
 import Card from '@material-ui/core/Card';
 import Button from '@material-ui/core/Button';
@@ -12,8 +13,10 @@ import { withRouter } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import PageHeader from '../../components/PageHeader'
 import LeftNavTaxista from '../../components/LeftNavTaxista';
+import { connect } from 'react-redux';
 
 import './HistorialTaxi.css'
+const url = 'http://127.0.0.1:5000'
 
 let id = 0;
 function createData(nombreCliente, fecha, origen, destino, costo) {
@@ -34,6 +37,27 @@ class HistorialTaxi extends Component {
 	constructor(props) {
     	super(props);
     	this.backAdmin = this.backAdmin.bind(this);
+    	this.state = {
+    		data: []
+    	}
+  	}
+
+  	componentDidMount() {
+  		axios.get(`${url}/historialTaxista`, {
+  			params: {
+  				idTaxista: this.props.ID
+  			}})
+  		.then((response) => {
+  			const resJson = response.data;
+  			const viajesData = resJson.map(viaje => {
+  				return (
+  				createData(viaje.id_viaje, viaje.nombre, viaje.fecha, viaje.origen, viaje.destino, viaje.costo)
+  				)
+  			})
+  			this.setState({
+  				data: viajesData
+  			})
+  		})
   	}
 
   	backAdmin(event) {
@@ -50,11 +74,6 @@ class HistorialTaxi extends Component {
 						</Grid>
 						<Grid item xs={11}>
 						<div className="HistorialBody">	
-							<div className="GoBackB">
-								<Button variant="contained" color="primary" onClick={this.backAdmin} className="GoBackB">
-									Go Back
-								</Button>
-							</div>
 							<Card className='PaperStyle'>
 						      <Table>
 						        <TableHead>
@@ -68,7 +87,7 @@ class HistorialTaxi extends Component {
 						          </TableRow>
 						        </TableHead>
 						        <TableBody>
-						          {rows.map(row => {
+						          {this.state.data.map(row => {
 						            return (
 						              <TableRow key={row.id}>
 						              <TableCell numeric>{row.id}</TableCell>
@@ -77,17 +96,17 @@ class HistorialTaxi extends Component {
 						              <TableCell >{row.origen}</TableCell>
 						              <TableCell >{row.destino}</TableCell>
 						              <TableCell >{row.costo}</TableCell>
-						                <TableCell> 
-						                	<Button variant="contained" color="primary" onClick={this.backAdmin}>
-						                		Ir
-						                	</Button>
-						                </TableCell>
 						              </TableRow>
 						            );
 						          })}
 						        </TableBody>
 						      </Table>
 						    </Card>
+						    <div className="GoBackB">
+								<Button variant="contained" color="primary" onClick={this.backAdmin} className="GoBackB">
+									Go Back
+								</Button>
+							</div>
 						</div>
 						</Grid>
 					</Grid>
@@ -97,5 +116,23 @@ class HistorialTaxi extends Component {
 
 }
 
+const mapStateToProps = state => {
+  return {
+    loggedIn: state.userReducer.loggedIn,
+    ID: state.userReducer.ID,
+    correo: state.userReducer.correo,
+    Nombre: state.userReducer.Nombre,
+    FechaNacimiento: state.userReducer.FechaNacimiento,
+    Sexo: state.userReducer.Sexo,
+    Telefono: state.userReducer.Telefono
+  };
+};
 
-export default withRouter(HistorialTaxi);
+const mapDispatchtoProps = dispatch => {
+  return {
+      tryLogIn: (ID, correo, Nombre, FechaNacimiento, Sexo, Telefono) => dispatch({type: 'LogIn', payload: {loggedIn: true, ID, correo, Nombre, FechaNacimiento, Sexo, Telefono}})
+  };
+};
+
+
+export default connect(mapStateToProps, mapDispatchtoProps)(withRouter(HistorialTaxi));
