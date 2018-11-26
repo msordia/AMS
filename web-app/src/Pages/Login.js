@@ -47,11 +47,11 @@ class Login extends Component {
     }
     if(resJson.tipo == "Taxista"){
       this.props.tryLogIn(resJson.id, resJson.username, resJson.nombre, resJson.fechaDeNacimiento, resJson.sexo, resJson.telefono);
+      this.props.taxiLogIn(resJson.marca, resJson.modelo, resJson.placas, resJson.color);
       this.props.history.push('/detallesTaxi');
     }
     if(resJson.tipo == "Cliente"){
       this.props.tryLogIn(resJson.id, resJson.username, resJson.nombre, resJson.fechaDeNacimiento, resJson.sexo, resJson.telefono);
-      this.props.taxiLogIn(resJson.marca, resJson.modelo, resJson.placas, resJson.color);
       this.props.history.push('/detallesUsuario');
     }
     if(resJson.tipo == "Administrador"){
