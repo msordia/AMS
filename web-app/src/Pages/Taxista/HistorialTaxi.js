@@ -18,19 +18,9 @@ import { connect } from 'react-redux';
 import './HistorialTaxi.css'
 const url = 'http://127.0.0.1:5000'
 
-let id = 0;
-function createData(nombreCliente, fecha, origen, destino, costo) {
-  id += 1;
+function createData(id, nombreCliente, fecha, origen, destino, costo) {
   return { id, nombreCliente, fecha, origen, destino, costo};
 }
-
-  const rows = [
-    createData('Osvaldo', '2017-10-25 8:36', 'Nuevo Sur', 'ITESM', 30.14),
-    createData('Osvaldo', '2017-10-25 8:36', 'Nuevo Sur', 'ITESM', 30.14),
-    createData('Osvaldo', '2017-10-25 8:36', 'Nuevo Sur', 'ITESM', 30.14),
-    createData('Osvaldo', '2017-10-25 8:36', 'Nuevo Sur', 'ITESM', 30.14),
-];
-
 
 class HistorialTaxi extends Component {
 
