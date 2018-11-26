@@ -47,12 +47,15 @@ class Login extends Component {
     }
     if(resJson.tipo == "Taxista"){
       this.props.history.push('/detallesTaxi');
+      this.props.tryLogIn(ID, correo, Nombre, FechaNacimiento, Sexo, Telefono);
     }
     if(resJson.tipo == "Cliente"){
       this.props.history.push('/detallesUsuario');
+      this.props.tryLogIn(ID, correo, Nombre, FechaNacimiento, Sexo Telefono, IDForma)
     }
     if(resJson.tipo == "Administrador"){
       this.props.history.push('/administrador');
+      this.props.tryLogIn(ID, correo, Nombre, FechaNacimiento, Sexo, Telefono);
     }
 		})
 	.catch(function (error){
@@ -121,13 +124,13 @@ class Login extends Component {
 
 const mapStateToProps = state => {
   return {
-    loggedIn: state.loggedIn
+    loggedIn: state.userReducer.loggedIn
   };
 };
 
 const mapDispatchtoProps = dispatch => {
   return {
-      tryLogIn: (uId, userName) => dispatch({type: 'LogIn', payload: {loggedIn: true, uId: uId, userName: userName}})
+      tryLogIn: (ID, correo, Nombre, FechaNacimiento, Sexo, Telefono) => dispatch({type: 'LogIn', payload: {loggedIn: true, ID, correo, Nombre, FechaNacimiento, Sexo, Telefono}})
   };
 };
 

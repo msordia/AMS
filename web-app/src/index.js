@@ -7,10 +7,10 @@ import './index.css';
 import App from './App';
 
 import * as serviceWorker from './serviceWorker';
-import userReducer from './Redux/reducer';
+import reducer from './Redux/reducer';
 
 
-const store = createStore(userReducer);
+const store = createStore(reducer);
 
 ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('root'));
 

@@ -33,20 +33,20 @@ class DetallesUsuario extends Component {
 							<Paper>
 								<div className="InnerPaperPadd">
 									<Typography variant="h4" component="h3" color="primary">
-									Bienvenido Juan
+										Bienvenido {this.props.Nombre}
 									</Typography>
 									<div className="InnerPaperDivider">
 										<Divider />
 										<Divider />
 									</div>
 									<Typography variant="h5" component="h3">
-										Correo: juan@hotmail.com
+										Correo: {this.props.correo}
 									</Typography>
 									<Typography variant="h5" component="h3">
-										Telefono: 8117226390
+										Telefono: {this.props.Telefono}
 									</Typography>
 									<Typography variant="h5" component="h3">
-										Fecha de Nacimiento: 1983-03-09
+										Fecha de Nacimiento: {this.props.FechaNacimiento}
 									</Typography>
 								</div>
 							</Paper>
@@ -68,5 +68,23 @@ class DetallesUsuario extends Component {
 
 }
 
+const mapStateToProps = state => {
+  return {
+    loggedIn: state.userReducer.loggedIn,
+    ID: state.userReducer.ID,
+    correo: state.userReducer.correo,
+    Nombre: state.userReducer.Nombre,
+    FechaNacimiento: state.userReducer.FechaNacimiento,
+    Sexo: state.userReducer.Sexo,
+    Telefono: state.userReducer.Telefono
+  };
+};
 
-export default withRouter(DetallesUsuario);
+const mapDispatchtoProps = dispatch => {
+  return {
+      tryLogIn: (ID, correo, Nombre, FechaNacimiento, Sexo, Telefono) => dispatch({type: 'LogIn', payload: {loggedIn: true, ID, correo, Nombre, FechaNacimiento, Sexo, Telefono}})
+  };
+};
+
+
+export default connect(mapStateToProps, mapDispatchtoProps)(withRouter(DetallesUsuario));
