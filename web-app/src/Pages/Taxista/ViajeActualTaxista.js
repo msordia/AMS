@@ -32,7 +32,7 @@ class ViajeActualTaxista extends Component {
 	componentDidMount() {
 		axios.get(`${url}/actualTaxista`, {
 			params: {
-				idCliente: this.props.ID
+				idTaxista: this.props.ID
 			}
 		})
 		.then((response) => {
