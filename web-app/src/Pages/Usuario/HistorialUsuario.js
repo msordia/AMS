@@ -95,7 +95,7 @@ class HistorialUsuario extends Component {
 						            return (
 						              <TableRow key={row.id}>
 						              <TableCell numeric>{row.id}</TableCell>
-						              <TableCell numeric>{row.nombreCliente}</TableCell>
+						              <TableCell numeric>{row.nombreTaxista}</TableCell>
 						              <TableCell >{row.fecha}</TableCell>
 						              <TableCell >{row.origen}</TableCell>
 						              <TableCell >{row.destino}</TableCell>
