@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios'
 import { withRouter } from 'react-router-dom';
 import Paper from '@material-ui/core/Paper';
 import Divider from '@material-ui/core/Divider';
@@ -9,6 +10,7 @@ import PageHeader from '../components/PageHeader';
 import { connect } from 'react-redux';
 
 import './ActualizarPerfil.css';
+const url = 'http://127.0.0.1:5000'
 
 class ActualizarPerfil extends Component {
 
@@ -16,11 +18,24 @@ class ActualizarPerfil extends Component {
 		super(props);
 		this.state = {
 			Nombre: this.props.Nombre,
-			FechaDeNacimiento: this.props.FechaNacimiento,
 			Sexo: this.props.Sexo,
 			Correo: this.props.correo,
 			Telefono: this.props.Telefono
 		}
+	}
+
+	actualizar = () => {
+		axios.post(`${url}/actualizarPerfil`, {
+			nombre: this.state.Nombre,
+			correo: this.state.Correo,
+			sexo: this.state.Sexo,
+			telefono: this.state.Telefono,
+			id: this.props.ID
+		})
+		.then((response) => {
+			if(response.data == "Done"){
+				this.props.history.goBack();			}
+		})
 	}
 
 	render(){
@@ -82,7 +97,7 @@ class ActualizarPerfil extends Component {
 					                color="primary"
 					            />
 							    <div className="ActualizarBottones">
-								    <Button variant="contained" color="primary" onClick={this.crearCita}>
+								    <Button variant="contained" color="primary" onClick={this.actualizar}>
 							              Actualizar
 							            </Button>
 							             <Button variant="contained" color="primary" onClick={() => {this.props.history.goBack()}}>
