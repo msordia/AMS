@@ -50,7 +50,7 @@ class Login extends Component {
       this.props.history.push('/detallesTaxi');
     }
     if(resJson.tipo == "Cliente"){
-      this.props.tryLogIn(resJson.id, resJson.username, resJson.nombre, resJson.fechaDeNacimiento, resJson.sexo, resJson.telefono, resJson.id_forma)
+      this.props.tryLogIn(resJson.id, resJson.username, resJson.nombre, resJson.fechaDeNacimiento, resJson.sexo, resJson.telefono);
       this.props.history.push('/detallesUsuario');
     }
     if(resJson.tipo == "Administrador"){
