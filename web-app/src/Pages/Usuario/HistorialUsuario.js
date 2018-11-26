@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios'
 import Table from '@material-ui/core/Table';
 import Card from '@material-ui/core/Card';
 import Button from '@material-ui/core/Button';
@@ -12,12 +13,13 @@ import { withRouter } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import PageHeader from '../../components/PageHeader'
 import LeftNavUsuario from '../../components/LeftNavUsuario';
+import { connect } from 'react-redux';
 
 import './HistorialUsuario.css'
+const url = 'http://127.0.0.1:5000'
 
 let id = 0;
-function createData(nombreTaxista, fecha, origen, destino, costo) {
-  id += 1;
+function createData(id, nombreTaxista, fecha, origen, destino, costo) {
   return { id, nombreTaxista, fecha, origen, destino, costo};
 }
 
@@ -34,6 +36,28 @@ class HistorialUsuario extends Component {
 	constructor(props) {
     	super(props);
     	this.backAdmin = this.backAdmin.bind(this);
+    	this.state = {
+    		data: []
+    	}
+  	}
+
+  	componentDidMount() {
+  		axios.get(`${url}/historialCliente`, {
+  			params: {
+  				idCliente: this.props.ID
+  			}}
+  		})
+  		.then((response) => {
+  			const resJson = response.data;
+  			viajesData = resJson.map(viaje => {
+  				return (
+  				createFata(viaje.id_viaje, viaje.nombre, viaje.fecha, viaje.origen, viaje.destino, viaje.costo);
+  				)
+  			})
+  			this.setState({
+  				data: viajesData;
+  			})
+  		})
   	}
 
   	backAdmin(event) {
@@ -68,7 +92,7 @@ class HistorialUsuario extends Component {
 						          </TableRow>
 						        </TableHead>
 						        <TableBody>
-						          {rows.map(row => {
+						          {this.state.data.map(row => {
 						            return (
 						              <TableRow key={row.id}>
 						              <TableCell numeric>{row.id}</TableCell>
@@ -97,5 +121,23 @@ class HistorialUsuario extends Component {
 
 }
 
+const mapStateToProps = state => {
+  return {
+    loggedIn: state.userReducer.loggedIn,
+    ID: state.userReducer.ID,
+    correo: state.userReducer.correo,
+    Nombre: state.userReducer.Nombre,
+    FechaNacimiento: state.userReducer.FechaNacimiento,
+    Sexo: state.userReducer.Sexo,
+    Telefono: state.userReducer.Telefono
+  };
+};
 
-export default withRouter(HistorialUsuario);
+const mapDispatchtoProps = dispatch => {
+  return {
+      tryLogIn: (ID, correo, Nombre, FechaNacimiento, Sexo, Telefono) => dispatch({type: 'LogIn', payload: {loggedIn: true, ID, correo, Nombre, FechaNacimiento, Sexo, Telefono}})
+  };
+};
+
+
+export default connect(mapStateToProps, mapDispatchtoProps)(withRouter(HistorialUsuario));
