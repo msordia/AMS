@@ -37,13 +37,13 @@ class Login extends Component {
 	  password: this.state.password	
 	}
 	})
-	.then(function (response){
+	.then((response) => {
 		const resJson = response.data;
-    if(resJson == "Invalid Login"){
+    if(resJson == "Invalid Login") {
       this.setState({
         username: '',
         password: ''
-      })
+      });
     }
     if(resJson.tipo == "Taxista"){
       this.props.history.push('/detallesTaxi');
@@ -59,7 +59,6 @@ class Login extends Component {
 		console.log(error);
 	})
     //this.props.tryLogIn(0, this.state.username);
-    
     console.log('Your username is ' +  this.state.username + ' and password is ' + this.state.password);
   }
 
