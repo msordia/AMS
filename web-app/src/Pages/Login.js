@@ -46,7 +46,7 @@ class Login extends Component {
       });
     }
     if(resJson.tipo == "Taxista"){
-      this.props.tryLogIn(resJson.ID, resJson.username, resJson.nombre, resJson.fechaDeNacimiento, resJson.sexo, resJson.telefono);
+      this.props.tryLogIn(resJson.id, resJson.username, resJson.nombre, resJson.fechaDeNacimiento, resJson.sexo, resJson.telefono);
       this.props.history.push('/detallesTaxi');
     }
     if(resJson.tipo == "Cliente"){
