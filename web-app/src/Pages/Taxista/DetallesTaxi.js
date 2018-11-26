@@ -6,6 +6,8 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 import LeftNavTaxista from '../../components/LeftNavTaxista';
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import './DetallesTaxi.css';
 
@@ -23,20 +25,20 @@ class DetallesTaxi extends Component {
 							<Paper>
 								<div className="InnerPaperPadd">
 									<Typography variant="h4" component="h3" color="primary">
-									Bienvenido Juan
+									Bienvenido {this.props.Nombre}
 									</Typography>
 									<div className="InnerPaperDivider">
 										<Divider />
 										<Divider />
 									</div>
 									<Typography variant="h5" component="h3">
-										Correo: juan@hotmail.com
+										Correo: {this.props.correo}
 									</Typography>
 									<Typography variant="h5" component="h3">
-										Telefono: 8117226390
+										Telefono: {this.props.Telefono}
 									</Typography>
 									<Typography variant="h5" component="h3">
-										Fecha de Nacimiento: 1983-03-09
+										Fecha de Nacimiento: {this.props.FechaNacimiento}
 									</Typography>
 									<div className="InnerPaperDivider">
 										<Divider />
@@ -76,4 +78,23 @@ class DetallesTaxi extends Component {
 }
 
 
-export default DetallesTaxi;
+const mapStateToProps = state => {
+  return {
+    loggedIn: state.userReducer.loggedIn,
+    ID: state.userReducer.ID,
+    correo: state.userReducer.correo,
+    Nombre: state.userReducer.Nombre,
+    FechaNacimiento: state.userReducer.FechaNacimiento,
+    Sexo: state.userReducer.Sexo,
+    Telefono: state.userReducer.Telefono
+  };
+};
+
+const mapDispatchtoProps = dispatch => {
+  return {
+      tryLogIn: (ID, correo, Nombre, FechaNacimiento, Sexo, Telefono) => dispatch({type: 'LogIn', payload: {loggedIn: true, ID, correo, Nombre, FechaNacimiento, Sexo, Telefono}})
+  };
+};
+
+
+export default connect(mapStateToProps, mapDispatchtoProps)(withRouter(DetallesUsuario));
