@@ -68,6 +68,13 @@ def ListaClientes ():
 	cursor = conn.cursor()
 	return clienteList(cursor)
 
+@app.route('/eliminarTaxista', methods = ['GET'])
+def delTaxista ():
+	idTaxista = request.args.get('idTaxista', None)
+	conn = mysql.connect()
+	cursor = conn.cursor()
+	return eliminarTaxista(idTaxista, cursor)
+
 @app.route('/actualizarPerfil', methods = ['POST'])
 def actualizarPerfil():
 	DataJson = json.loads(request.data)
