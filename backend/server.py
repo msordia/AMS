@@ -99,7 +99,7 @@ def agregarTaxi():
 	conn.close()
 	return result
 
-@app.route('/newTrip', methods = ['POST'])
+@app.route('/crearViaje', methods = ['POST'])
 def newTrip():
 	DataJson = json.loads(request.data)
 	conn = mysql.connect()

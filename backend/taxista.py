@@ -26,7 +26,7 @@ def viajeActualTaxista(idTaxi, cursor):
 		return resultString
 
 def agregarTaxi(idTaxi, nombre, nacimiento, sexo, correo, tel, cursor):
-	query = "INSERT INTO Taxista (" + idTaxi + "," + nombre + "," + nacimiento + "," + sexo + "," + tel + "," + correo");"
+	query = "INSERT INTO Taxista (" + idTaxi + "," + nombre + "," + nacimiento + "," + sexo + "," + tel + "," + correo + ");"
 	cursor.execute(query);
 	result = cursor.fetchone();
 	return "Done"
