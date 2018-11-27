@@ -83,7 +83,6 @@ class AdminTaxis extends Component {
 					<PageHeader Description="Administrar Taxis" />
 					<div className="Taxista-body">	
 						<div className="GoBackB">
-							
 							<Button variant="contained" color="primary" onClick={this.backAdmin} className="GoBackB">
 								Crear Taxi
 							</Button>
