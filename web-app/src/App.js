@@ -9,6 +9,7 @@ import DetallesTaxi from './Pages/Taxista/DetallesTaxi';
 import HistorialTaxi from './Pages/Taxista/HistorialTaxi';
 import DetallesUsuario from './Pages/Usuario/DetallesUsuario';
 import HistorialUsuario from './Pages/Usuario/HistorialUsuario';
+import Encuesta from './Pages/Usuario/Encuesta';
 import ActualizarPerfil from './Pages/ActualizarPerfil';
 import RegistrarUsuario from './Pages/Usuario/RegistrarUsuario';
 import RegistrarTaxista from './Pages/Admin/RegistrarTaxista';
@@ -56,6 +57,12 @@ class App extends Component {
               path ='/adminEncuestas'
               render={() => (
                   <AdminEncuestas/>
+                )} />
+                <Route
+              exact
+              path ='/encuesta'
+              render={() => (
+                  <Encuesta/>
                 )} />
                 <Route
               exact

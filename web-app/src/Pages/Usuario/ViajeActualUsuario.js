@@ -79,6 +79,10 @@ class ViajeActualUsuario extends Component {
 		})
 	}
 
+	encuesta = () => {
+		this.props.history.push('/encuesta');
+	}
+
 
 
 	renderViajeActual = () => {
@@ -169,9 +173,13 @@ class ViajeActualUsuario extends Component {
 							</Paper>
 						</div>
 						<div className="ButtonsDetalles">
+						<Button variant="contained" color="primary" onClick={this.encuesta} className="Login_Button">
+			              		Encuesta
+			            	</Button>
 							<Button variant="contained" color="primary" onClick={this.cancelarViaje} className="Login_Button">
 			              		Cancelar Viaje
 			            	</Button>
+							
 		            	</div>
 		           </div>
 				);
