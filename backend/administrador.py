@@ -58,4 +58,9 @@ def cancelarViaje(idViaje, cursor):
 	cursor.execute(query)
 	return "Done"
 
+def comenzarViaje(idViaje, cursor):
+	query = "UPDATE Viaje SET Estatus = 1 WHERE Id_viaje = " + idViaje + ";"
+	cursor.execute(query)
+	return "Done"
+
 
