@@ -19,3 +19,8 @@ def clienteList(cursor):
 		return 'none';
 	if result != None:
 		resultJson = '{ "id":"' + str(result[0]) + '", "nombre":"' + result[1] + '", "fechaDeNacimiento": "' + str(result[2]) + '", "sexo": "' + result[3] + '", "telefono": "' + str(result[4]) + '", "correo": "' + result[5] + '" + }'
+
+def crearViaje(idCliente, origen, destino, fecha, cursor):
+	query = "UPDATE Persona SET nombre = \"" + nombreN + "\", sexo = \"" + sexoN + "\", correo = \"" + correoN + "\", telefono = \"" + telefonoN + "\" WHERE id_persona = " + idCliente + ";"
+	cursor.execute(query)
+	return "Done"
