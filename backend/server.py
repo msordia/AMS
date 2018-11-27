@@ -93,7 +93,7 @@ def actualizarPerfil():
 	cursor.close()
 	conn.close()
 	return result
-
+'''
 @app.route('/agregarTaxi', methods = ['POST'])
 def agregarTaxi():
 	DataJson = json.loads(request.data)
@@ -105,7 +105,7 @@ def agregarTaxi():
 	cursor.close()
 	conn.close()
 	return result
-
+'''
 @app.route('/crearViaje', methods = ['POST'])
 def newTrip():
 	DataJson = json.loads(request.data)
