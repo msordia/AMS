@@ -26,7 +26,7 @@ class RegistrarTaxista extends Component {
 	}
 
 	agregar = () => {
-		axios.post(`${url}/agregarCliente`, {
+		axios.post(`${url}/agregarTaxista`, {
 			nombre: this.state.Nombre,
 			fecha_de_nacimiento: this.state.FechaDeNacimiento,
 			sexo: this.state.Sexo,
