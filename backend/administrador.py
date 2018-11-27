@@ -79,3 +79,15 @@ def calificarViaje(idViaje, fecha, estrellas, cursor):
 	cursor.execute(query)
 	return "Done"
 
+def encuestaList(cursor):
+	query = "SELECT Id_enc, Id_viaje, Fecha, estrellas FROM Encuesta;"
+	cursor.execute(query);
+	result = cursor.fetchone();
+	if result == None:
+		return 'none';
+	resultString = '['
+	while result != None:
+		resultString += '{ "idEnc":"' + str(result[0]) + '", "idViaje":"' + str(result[1]) + '", "fecha": "' + str(result[2]) + '", "estrellas": "' + str(result[3]) + '"},'
+		result = cursor.fetchone()
+	resultString = resultString[:-1] + ']'
+	return resultString

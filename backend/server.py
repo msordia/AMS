@@ -5,7 +5,7 @@ import json
 from login import tryLogin
 from cliente import historialViajesCliente, viajeActualCliente, actualizarDatos, agregarCliente
 from taxista import historialViajesTaxista, viajeActualTaxista, agregarTaxista
-from administrador import taxiList, clienteList, eliminarTaxista, crearViaje, cancelarViaje, comenzarViaje, terminarViaje, calificarViaje
+from administrador import taxiList, clienteList, eliminarTaxista, crearViaje, cancelarViaje, comenzarViaje, terminarViaje, calificarViaje, encuestaList
 app = Flask(__name__)
 mysql = MySQL(app)
 CORS(app)
@@ -85,6 +85,15 @@ def ListaClientes ():
 	conn = mysql.connect()
 	cursor = conn.cursor()
 	result = clienteList(cursor)
+	cursor.close()
+	conn.close()
+	return result
+
+@app.route('/encuestaList', methods = ['GET'])
+def ListaTaxis ():
+	conn = mysql.connect()
+	cursor = conn.cursor()
+	result = encuestaList(cursor)
 	cursor.close()
 	conn.close()
 	return result
