@@ -25,8 +25,10 @@ def viajeActualTaxista(idTaxi, cursor):
 		resultString = '{ "nombre": "' + result[0] + '", "id_viaje": "' + str(result[1]) + '", "origen": "' + result[2] + '", "destino": "' + result[3] + '", "fecha": "' + str(result[4]) + '", "costo": "' + str(result[5]) + '", "marca": "' + str(result[6]) + '", "modelo": "' + str(result[7]) + '", "placas": "' + str(result[8]) + '", "color": "' + str(result[9]) + '" , "estatus": "' + str(result[10]) + '" }'
 		return resultString
 
+'''
 def agregarTaxi(idTaxi, nombre, nacimiento, sexo, correo, tel, cursor):
 	query = "INSERT INTO Taxista (" + idTaxi + "," + nombre + "," + nacimiento + "," + sexo + "," + tel + "," + correo + ");"
 	cursor.execute(query);
 	result = cursor.fetchone();
 	return "Done"
+'''
