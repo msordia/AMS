@@ -5,7 +5,7 @@ import json
 from login import tryLogin
 from cliente import historialViajesCliente, viajeActualCliente, actualizarDatos, agregarCliente
 from taxista import historialViajesTaxista, viajeActualTaxista, agregarTaxista
-from administrador import taxiList, clienteList, eliminarTaxista, crearViaje, cancelarViaje, comenzarViaje
+from administrador import taxiList, clienteList, eliminarTaxista, crearViaje, cancelarViaje, comenzarViaje, terminarViaje
 app = Flask(__name__)
 mysql = MySQL(app)
 CORS(app)
@@ -117,6 +117,18 @@ def startTrip ():
 	conn = mysql.connect()
 	cursor = conn.cursor()
 	result = comenzarViaje(DataJson["idViaje"], cursor)
+	if result == "Done":
+		conn.commit()
+	cursor.close()
+	conn.close()
+	return result
+
+@app.route('/terminarViaje', methods = ['POST'])
+def endTrip ():
+	DataJson = json.loads(request.data)
+	conn = mysql.connect()
+	cursor = conn.cursor()
+	result = terminarViaje(DataJson["idViaje"], cursor)
 	if result == "Done":
 		conn.commit()
 	cursor.close()
