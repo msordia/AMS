@@ -129,7 +129,7 @@ const mapStateToProps = state => {
 
 const mapDispatchtoProps = dispatch => {
   return {
-      actualizarPerfil: (nombre, correo, sexo, telefono) => dispatch({type:'actualizarPefil', payload: { nombre, correo, sexo, telefono }})
+      actualizarPerfil: (nombre, correo, sexo, telefono, ID, fechaNacimiento) => dispatch({type:'actualizarPefil', payload: { ID, fechaNacimiento, nombre, correo, sexo, telefono }})
   };
 };
 
