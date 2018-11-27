@@ -56,7 +56,7 @@ class ViajeActualUsuario extends Component {
 
 	crearViaje = () => {
 		axios.post(`${url}/crearViaje`, {
-			idCliente: this.post.ID,
+			id: this.props.ID,
 			origen: this.state.origen,
 			destino: this.state.destino,
 			fecha: this.state.fecha
