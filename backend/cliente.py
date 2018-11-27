@@ -26,7 +26,7 @@ def viajeActualCliente(idCliente, cursor):
 		return resultString
 
 def agregarCliente(nombre, nacimiento, sexo, correo, tel, pw, pago, cursor):
-	query1 = "SELECT MAX(Id_cliente) FROM Cliente";
+	query1 = "SELECT MAX(id_persona) FROM Persona";
 	cursor.execute(query1);
 	idCliente = cursor.fetchone();
 	idClienteInt = idCliente[0]+1

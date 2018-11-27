@@ -26,11 +26,11 @@ def viajeActualTaxista(idTaxi, cursor):
 		return resultString
 
 def agregarTaxista(nombre, nacimiento, sexo, correo, tel, pw, cursor):
-	query1 = "SELECT MAX(id_taxista) FROM Taxista";
+	query1 = "SELECT MAX(id_persona) FROM Persona";
 	cursor.execute(query1);
 	idTaxista = cursor.fetchone();
-	idTaxistaInt = idTaxista[0]+1
-
+	idTaxistaInt = idTaxista[0]
+	idTaxistaInt += 1
 	query = "INSERT INTO Persona VALUES(" + str(idTaxistaInt) + ",\"" + nombre + "\",\"" + nacimiento + "\",\"" + sexo + "\",\"" + tel + "\",\"" + correo + "\" ,\"" + pw + "\" );"
 	cursor.execute(query);
 	result = cursor.fetchone();
