@@ -10,7 +10,7 @@ app = Flask(__name__)
 mysql = MySQL(app)
 CORS(app)
 
-app.config['MYSQL_DATABASE_USER'] = 'test'
+app.config['MYSQL_DATABASE_USER'] = 'root'
 app.config['MYSQL_DATABASE_DB'] = 'TaxiUnico'
 app.config['MYSQL_DATABASE_HOST'] = 'localhost'
 app.config['MYSQL_DATABASE_PORT'] = 3306
