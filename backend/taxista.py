@@ -31,11 +31,11 @@ def agregarTaxista(nombre, nacimiento, sexo, correo, tel, pw, cursor):
 	idTaxista = cursor.fetchone();
 	idTaxistaInt = idTaxista[0]+1
 
-	query = "INSERT INTO Persona (" + str(idTaxistaInt) + ",\"" + nombre + "\",\"" + nacimiento + "\",\"" + sexo + "\",\"" + tel + "\",\"" + correo + "\" ,\"" + pw + "\" );"
+	query = "INSERT INTO Persona VALUES(" + str(idTaxistaInt) + ",\"" + nombre + "\",\"" + nacimiento + "\",\"" + sexo + "\",\"" + tel + "\",\"" + correo + "\" ,\"" + pw + "\" );"
 	cursor.execute(query);
 	result = cursor.fetchone();
 
-	query2 = "INSERT INTO Taxista (" + str(idTaxistaInt) + ", 1  );"
+	query2 = "INSERT INTO Taxista VALUES(" + str(idTaxistaInt) + ", 1  );"
 	cursor.execute(query2);
 	result = cursor.fetchone();
 	return "Done"
