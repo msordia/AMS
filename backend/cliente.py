@@ -25,7 +25,33 @@ def viajeActualCliente(idCliente, cursor):
 		resultString = '{ "nombre": "' + result[0] + '", "id_viaje": "' + str(result[1]) + '", "origen": "' + result[2] + '", "destino": "' + result[3] + '", "fecha": "' + str(result[4]) + '", "costo": "' + str(result[5]) + '", "marca": "' + str(result[6]) + '", "modelo": "' + str(result[7]) + '", "placas": "' + str(result[8]) + '", "color": "' + str(result[9]) + '" , "estatus": "' + str(result[10]) + '" }'
 		return resultString
 
+def agregarCliente(nombre, nacimiento, sexo, correo, tel, pw, pago, cursor):
+	query1 = "SELECT MAX(Id_cliente) FROM Cliente";
+	cursor.execute(query1);
+	idCliente = cursor.fetchone();
+	idClienteInt = idCliente[0]+1
+
+	query = "INSERT INTO Persona VALUES(" + str(idClienteInt) + ",\"" + nombre + "\",\"" + nacimiento + "\",\"" + sexo + "\",\"" + tel + "\",\"" + correo + "\", \"" + pw + "\" );"
+	print(query)
+	cursor.execute(query);
+	result = cursor.fetchone();
+
+	query3 = "SELECT MAX(Id_forma) FROM FormaDePago";
+	cursor.execute(query3);
+	idForma = cursor.fetchone();
+	idFormaInt = idForma[0]+1
+
+	query4 = "INSERT INTO FormaDePago VALUES(" + str(idFormaInt) + ", \"" + pago + "\");"
+	cursor.execute(query4);
+	result = cursor.fetchone();
+	return "Done"
+
+	query2 = "INSERT INTO Cliente VALUES(" + str(idClienteInt) + ", " + str(idFormaInt) + ");"
+	cursor.execute(query2);
+	result = cursor.fetchone();
+	return "Done"
+
 def actualizarDatos(idCliente, nombreN, sexoN, correoN, telefonoN, cursor):
-	query = "UPDATE Persona SET nombre = \"" + nombreN + "\", sexo = \"" + sexoN + "\", correo = \"" + correoN + "\", telefono = \"" + telefonoN + "\" WHERE id_persona = " + idCliente + ";"
+	query = "UPDATE Persona SET nombre = \"" + nombreN + "\", sexo = \"" + sexoN + "\", correo = \"" + correoN + "\", telefono = \"" + telefonoN + "\" WHERE id_persona = " + str(idCliente) + ";"
 	cursor.execute(query)
 	return "Done"
