@@ -3,8 +3,8 @@ from flask_cors import CORS
 from flaskext.mysql import MySQL
 import json
 from login import tryLogin
-from cliente import historialViajesCliente, viajeActualCliente, actualizarDatos
-from taxista import historialViajesTaxista, viajeActualTaxista, agregarTaxi
+from cliente import historialViajesCliente, viajeActualCliente, actualizarDatos, agregarCliente
+from taxista import historialViajesTaxista, viajeActualTaxista, agregarTaxista
 from administrador import taxiList, clienteList, eliminarTaxista, crearViaje, cancelarViaje
 app = Flask(__name__)
 mysql = MySQL(app)
@@ -99,12 +99,14 @@ def delTaxista ():
 	conn.close()
 	return result
 
-@app.route('/cancelarViaje', methods = ['GET'])
+@app.route('/cancelarViaje', methods = ['POST'])
 def cancelTrip ():
-	idViaje = request.args.get('idViaje', None)
+	DataJson = json.loads(request.data)
 	conn = mysql.connect()
 	cursor = conn.cursor()
-	result = cancelarViaje(idViaje, cursor)
+	result = cancelarViaje(DataJson["idViaje"], cursor)
+	if result == "Done":
+		conn.commit()
 	cursor.close()
 	conn.close()
 	return result
@@ -121,12 +123,24 @@ def actualizarPerfil():
 	conn.close()
 	return result
 
-@app.route('/agregarTaxi', methods = ['POST'])
-def agregarTaxi():
+@app.route('/agregarTaxista', methods = ['POST'])
+def addTaxista():
 	DataJson = json.loads(request.data)
 	conn = mysql.connect()
 	cursor = conn.cursor()
-	result = agregarTaxi(DataJson["id"], DataJson["nombre"], DataJson["fecha_de_nacimiento"], DataJson["sexo"], DataJson["correo"], DataJson["telefono"],cursor)
+	result = agregarTaxista(DataJson["nombre"], DataJson["fecha_de_nacimiento"], DataJson["sexo"], DataJson["correo"], DataJson["telefono"], DataJson["pw"], cursor)
+	if result == "Done":
+		conn.commit()
+	cursor.close()
+	conn.close()
+	return result
+
+@app.route('/agregarCliente', methods = ['POST'])
+def addCliente():
+	DataJson = json.loads(request.data)
+	conn = mysql.connect()
+	cursor = conn.cursor()
+	result = agregarCliente( DataJson["nombre"], DataJson["fecha_de_nacimiento"], DataJson["sexo"], DataJson["correo"], DataJson["telefono"], DataJson["pw"], DataJson["pago"], cursor)
 	if result == "Done":
 		conn.commit()
 	cursor.close()

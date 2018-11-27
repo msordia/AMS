@@ -25,9 +25,17 @@ def viajeActualTaxista(idTaxi, cursor):
 		resultString = '{ "nombre": "' + result[0] + '", "id_viaje": "' + str(result[1]) + '", "origen": "' + result[2] + '", "destino": "' + result[3] + '", "fecha": "' + str(result[4]) + '", "costo": "' + str(result[5]) + '", "marca": "' + str(result[6]) + '", "modelo": "' + str(result[7]) + '", "placas": "' + str(result[8]) + '", "color": "' + str(result[9]) + '" , "estatus": "' + str(result[10]) + '" }'
 		return resultString
 
+def agregarTaxista(nombre, nacimiento, sexo, correo, tel, pw, cursor):
+	query1 = "SELECT MAX(id_taxista) FROM Taxista";
+	cursor.execute(query1);
+	idTaxista = cursor.fetchone();
+	idTaxistaInt = idTaxista[0]+1
 
-def agregarTaxi(idTaxi, nombre, nacimiento, sexo, correo, tel, cursor):
-	query = "INSERT INTO Taxista (" + idTaxi + "," + nombre + "," + nacimiento + "," + sexo + "," + tel + "," + correo + ");"
+	query = "INSERT INTO Persona (" + idTaxistaInt + "," + nombre + "," + nacimiento + "," + sexo + "," + tel + "," + correo + " , " + pw + " );"
 	cursor.execute(query);
+	result = cursor.fetchone();
+
+	query2 = "INSERT INTO Taxista (" + idTaxistaInt + ", 1  );"
+	cursor.execute(query2);
 	result = cursor.fetchone();
 	return "Done"
