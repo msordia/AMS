@@ -63,9 +63,19 @@ def comenzarViaje(idViaje, cursor):
 	cursor.execute(query)
 	return "Done"
 
-def terminarViaje(idViaje, cursor):
+def terminarViaje(idViaje, fecha, cursor):
 	query = "UPDATE Viaje SET Estatus = 2 WHERE Id_viaje = " + idViaje + ";"
 	cursor.execute(query)
 	return "Done"
 
+def calificarViaje(idViaje, fecha, estrellas, cursor):
+	query1 = "SELECT MAX(Id_enc) FROM Encuesta";
+	cursor.execute(query1);
+	idEncuesta = cursor.fetchone();
+	idEncuestaInt = idEncuesta[0]
+	idEncuestaInt += 1
+
+	query = "INSERT INTO Encuesta VALUES(" + str(idEncuestaInt) + ", " + str(idViaje) + ", " + 1 + ", \"" + fecha + "\", "  + str(estrellas) + ");"
+	cursor.execute(query)
+	return "Done"
 
