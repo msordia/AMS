@@ -75,6 +75,13 @@ def delTaxista ():
 	cursor = conn.cursor()
 	return eliminarTaxista(idTaxista, cursor)
 
+@app.route('/cancelarViaje', methods = ['GET'])
+def cancelTrip ():
+	idViaje = request.args.get('idViaje', None)
+	conn = mysql.connect()
+	cursor = conn.cursor()
+	return cancelarViaje(idViaje, cursor)
+
 @app.route('/actualizarPerfil', methods = ['POST'])
 def actualizarPerfil():
 	DataJson = json.loads(request.data)
