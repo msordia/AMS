@@ -31,7 +31,7 @@ def agregarCliente(nombre, nacimiento, sexo, correo, tel, pw, pago, cursor):
 	idCliente = cursor.fetchone();
 	idClienteInt = idCliente[0]+1
 
-	query = "INSERT INTO Persona (" + str(idClienteInt) + "," + nombre + "," + nacimiento + "," + sexo + "," + tel + "," + correo + " , " + pw + " );"
+	query = "INSERT INTO Persona (" + str(idClienteInt) + ",\"" + nombre + "\",\"" + nacimiento + "\",\"" + sexo + "\",\"" + tel + "\",\"" + correo + "\", \"" + pw + "\" );"
 	cursor.execute(query);
 	result = cursor.fetchone();
 
@@ -40,7 +40,7 @@ def agregarCliente(nombre, nacimiento, sexo, correo, tel, pw, pago, cursor):
 	idForma = cursor.fetchone();
 	idFormaInt = idForma[0]+1
 
-	query4 = "INSERT INTO FormaDePago (" + str(idFormaInt) + ", " + pago + ");"
+	query4 = "INSERT INTO FormaDePago (" + str(idFormaInt) + ", \"" + pago + "\");"
 	cursor.execute(query4);
 	result = cursor.fetchone();
 	return "Done"
