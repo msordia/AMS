@@ -57,6 +57,12 @@ class App extends Component {
               render={() => (
                   <AdminEncuestas/>
                 )} />
+                <Route
+              exact
+              path ='/adminPrecios'
+              render={() => (
+                  <AdminPrecios/>
+                )} />
               <Route
               exact
               path ='/adminPrecios'
