@@ -4,7 +4,7 @@ from flaskext.mysql import MySQL
 import json
 from login import tryLogin
 from cliente import historialViajesCliente, viajeActualCliente, actualizarDatos
-from taxista import historialViajesTaxista, viajeActualTaxista
+from taxista import historialViajesTaxista, viajeActualTaxista, agregarTaxi
 from administrador import taxiList, clienteList, eliminarTaxista, crearViaje
 app = Flask(__name__)
 mysql = MySQL(app)
@@ -120,7 +120,7 @@ def actualizarPerfil():
 	cursor.close()
 	conn.close()
 	return result
-'''
+
 @app.route('/agregarTaxi', methods = ['POST'])
 def agregarTaxi():
 	DataJson = json.loads(request.data)
@@ -132,7 +132,7 @@ def agregarTaxi():
 	cursor.close()
 	conn.close()
 	return result
-'''
+
 @app.route('/crearViaje', methods = ['POST'])
 def newTrip():
 	DataJson = json.loads(request.data)

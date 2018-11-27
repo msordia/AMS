@@ -26,8 +26,8 @@ def clienteList(cursor):
 	while result != None:
 		resultJson += '{ "id":"' + str(result[0]) + '", "nombre":"' + result[1] + '", "fechaDeNacimiento": "' + str(result[2]) + '", "sexo": "' + result[3] + '", "telefono": "' + str(result[4]) + '", "correo": "' + result[5] + '"},'
 		result = cursor.fetchone()
-	resultString = resultString[:-1] + ']'
-	return resultString
+	resultJson = resultJson[:-1] + ']'
+	return resultJson
 
 def crearViaje(idCliente, origen, destino, fecha, cursor):
 	query = "SELECT ta.Id_taxi FROM Viaje v JOIN Taxi ta ON v.Id_taxi = ta.Id_taxi JOIN Taxista t ON t.id_taxista = ta.id_taxista WHERE t.activo = 1 AND v.Estatus > 1";
