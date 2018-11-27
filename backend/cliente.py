@@ -31,7 +31,7 @@ def agregarCliente(nombre, nacimiento, sexo, correo, tel, pw, pago, cursor):
 	idCliente = cursor.fetchone();
 	idClienteInt = idCliente[0]+1
 
-	query = "INSERT INTO Persona (" + idClienteInt + "," + nombre + "," + nacimiento + "," + sexo + "," + tel + "," + correo + " , " + pw + " );"
+	query = "INSERT INTO Persona (" + str(idClienteInt) + "," + nombre + "," + nacimiento + "," + sexo + "," + tel + "," + correo + " , " + pw + " );"
 	cursor.execute(query);
 	result = cursor.fetchone();
 
@@ -40,17 +40,17 @@ def agregarCliente(nombre, nacimiento, sexo, correo, tel, pw, pago, cursor):
 	idForma = cursor.fetchone();
 	idFormaInt = idForma[0]+1
 
-	query4 = "INSERT INTO FormaDePago (" + idFormaInt + ", " + pago + ");"
+	query4 = "INSERT INTO FormaDePago (" + str(idFormaInt) + ", " + pago + ");"
 	cursor.execute(query4);
 	result = cursor.fetchone();
 	return "Done"
 
-	query2 = "INSERT INTO Cliente (" + idClienteInt + ", " + idFormaInt + ");"
+	query2 = "INSERT INTO Cliente (" + str(idClienteInt) + ", " + str(idFormaInt) + ");"
 	cursor.execute(query2);
 	result = cursor.fetchone();
 	return "Done"
 
 def actualizarDatos(idCliente, nombreN, sexoN, correoN, telefonoN, cursor):
-	query = "UPDATE Persona SET nombre = \"" + nombreN + "\", sexo = \"" + sexoN + "\", correo = \"" + correoN + "\", telefono = \"" + telefonoN + "\" WHERE id_persona = " + idCliente + ";"
+	query = "UPDATE Persona SET nombre = \"" + nombreN + "\", sexo = \"" + sexoN + "\", correo = \"" + correoN + "\", telefono = \"" + telefonoN + "\" WHERE id_persona = " + str(idCliente) + ";"
 	cursor.execute(query)
 	return "Done"
