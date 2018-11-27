@@ -49,3 +49,8 @@ def agregarCliente(nombre, nacimiento, sexo, correo, tel, pw, pago, cursor):
 	cursor.execute(query2);
 	result = cursor.fetchone();
 	return "Done"
+
+def actualizarDatos(idCliente, nombreN, sexoN, correoN, telefonoN, cursor):
+	query = "UPDATE Persona SET nombre = \"" + nombreN + "\", sexo = \"" + sexoN + "\", correo = \"" + correoN + "\", telefono = \"" + telefonoN + "\" WHERE id_persona = " + idCliente + ";"
+	cursor.execute(query)
+	return "Done"
