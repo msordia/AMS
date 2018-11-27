@@ -37,8 +37,8 @@ def crearViaje(idCliente, origen, destino, fecha, cursor):
 	cursor.execute(query);
 	idViaje = cursor.fetchone();
 	idViaje++;
-	SELECT FLOOR 
+	costo = SELECT FLOOR(RAND()*(800-40+1))+40 
 
-	query2 = "INSERT INTO Viaje VALUES(\"" + idViaje + "\", \"" + idCliente + "\", \"" + fecha + "\", \"" + origen + "\", , \"" + destino + "\",   );"
+	query2 = "INSERT INTO Viaje VALUES(" + str(idViaje) + ", " + str(idCliente) + ", \"" + fecha + "\", \"" + origen + "\", , \"" + destino + "\", "  + str(costo) + ", 0);"
 	cursor.execute(query2)
 	return "Done"

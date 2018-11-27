@@ -79,3 +79,18 @@ def actualizarPerfil():
 	cursor.close()
 	conn.close()
 	return result
+
+	idCliente, origen, destino, fecha, cursor
+
+@app.route('/newTrip', methods = ['POST'])
+def newTrip():
+	DataJson = json.loads(request.data)
+	conn = mysql.connect()
+	cursor = conn.cursor()
+	result = crearViaje(DataJson["id"], DataJson["origen"], DataJson["destino"], DataJson["fecha"],cursor)
+	if result == "Done":
+		conn.commit()
+	cursor.close()
+	conn.close()
+	return result
+
