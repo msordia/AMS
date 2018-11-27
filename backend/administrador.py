@@ -36,7 +36,7 @@ def crearViaje(idCliente, origen, destino, fecha, cursor):
 	if result == None:
 		return 'none';
 
-	query1 = "SELECT MAX (Id_viaje) FROM Viaje";
+	query1 = "SELECT MAX(Id_viaje) FROM Viaje";
 	cursor.execute(query1);
 	idViaje = cursor.fetchone();
 	idViajeInt = idViaje[0]+1
