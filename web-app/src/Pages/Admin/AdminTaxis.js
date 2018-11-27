@@ -75,8 +75,12 @@ class AdminTaxis extends Component {
   		})
   	}
 
-		registrarse = () => {
+		registrarTaxista = () => {
 			this.props.history.push('/registrarTaxista');
+		}
+
+		registrarTaxi = () => {
+			this.props.history.push('/registrarTaxi');
 		}
 
 
@@ -86,10 +90,10 @@ class AdminTaxis extends Component {
 					<PageHeader Description="Administrar Taxis" />
 					<div className="Taxista-body">	
 						<div className="GoBackB">
-							<Button variant="contained" color="primary" onClick={this.backAdmin} className="GoBackB">
+							<Button variant="contained" color="primary" onClick={this.registrarTaxi} className="GoBackB">
 								Crear Taxi
 							</Button>
-							<Button variant="contained" color="primary" onClick={this.registrarse} className="GoBackB">
+							<Button variant="contained" color="primary" onClick={this.registrarTaxista} className="GoBackB">
 								Agregar Taxista
 							</Button>
 						</div>
