@@ -54,6 +54,8 @@ def eliminarTaxista(idTaxista, cursor):
 	return "Done"
 
 def cancelarViaje(idViaje, cursor):
-	query = "UPDATE Viaje SET Estatus = 2 WHERE id_taxista = " + idTaxista + ";"
+	query = "UPDATE Viaje SET Estatus = 2 WHERE Id_viaje = " + idViaje + ";"
 	cursor.execute(query)
 	return "Done"
+
+
