@@ -6,8 +6,11 @@ import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import PageHeader from '../../components/PageHeader';
+import axios from 'axios'
 
 import './RegistrarUsuario.css';
+const url = 'http://127.0.0.1:5000'
+
 
 class RegistrarUsuario extends Component {
 
@@ -18,7 +21,26 @@ class RegistrarUsuario extends Component {
 			FechaDeNacimiento: '0000-00-00',
 			Sexo: '',
 			Correo: '',
+			Telefono: '',
+			Password: ''
 		}
+	}
+
+
+	registrarUsuario = () => {
+		axios.post(`${url}/agregarCliente`, {
+			nombre: this.state.Nombre,
+			fecha_de_nacimiento: this.state.FechaDeNacimiento,
+			sexo: this.state.Sexo,
+			telefono: this.state.Telefono,
+			correo: this.state.Correo,
+			pw: this.state.Password
+		})
+		.then((response) => {
+			if(response.data == "Done"){
+				this.props.history.goBack();
+			}
+		})
 	}
 
 	render(){
@@ -80,8 +102,30 @@ class RegistrarUsuario extends Component {
 					                value={this.state.Correo}
 					                color="primary"
 					            />
+					            <TextField
+					                id="Telefono"
+					                label="Telefono"
+					                className="TextFieldS"
+					                margin="dense"
+					                variant="outlined"
+					                onChange={(input) => {this.setState({Telefono: input.target.value })}}
+					                fullWidth
+					                value={this.state.Telefono}
+					                color="primary"
+					            />
+					            <TextField
+					                id="Password"
+					                label="Password"
+					                className="TextFieldS"
+					                margin="dense"
+					                variant="outlined"
+					                onChange={(input) => {this.setState({Password: input.target.value })}}
+					                fullWidth
+					                value={this.state.Password}
+					                color="primary"
+					            />
 							    <div className="ActualizarBottones">
-								    <Button variant="contained" color="primary" onClick={this.crearCita}>
+								    <Button variant="contained" color="primary" onClick={this.registrarUsuario}>
 							              Registrarse
 							            </Button>
 							             <Button variant="contained" color="primary" onClick={() => {this.props.history.goBack()}}>
