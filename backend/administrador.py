@@ -1,6 +1,7 @@
 from flaskext.mysql import MySQL
 import datetime
 import time
+import random
 
 def taxiList(cursor):
 	query = "SELECT * FROM Persona p JOIN Taxista t ON p.id_persona = t.id_taxista;"
@@ -40,7 +41,8 @@ def crearViaje(idCliente, origen, destino, fecha, cursor):
 	cursor.execute(query1);
 	idViaje = cursor.fetchone();
 	idViajeInt = idViaje[0]+1
-	costo = "SELECT FLOOR(RAND()*(800-40+1))+40";
+
+	costo = random.randint(50,800)
 
 	query2 = "INSERT INTO Viaje VALUES(" + str(idViajeInt) + ", " + str(idCliente) + ", \"" + fecha + "\", \"" + origen + "\", , \"" + destino + "\", "  + str(costo) + ", 0);"
 	cursor.execute(query2)
