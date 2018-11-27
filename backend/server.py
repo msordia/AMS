@@ -66,3 +66,21 @@ def actualizarPerfil():
 	cursor.close()
 	conn.close()
 	return result
+
+nombre VARCHAR(100),
+fechaNacimiento DATE,
+sexo VARCHAR(1),
+telefono VARCHAR(10),
+correo VARCHAR(100),
+
+@app.route('/agregarTaxi', methods = ['POST'])
+def agregarTaxi():
+	DataJson = json.loads(request.data)
+	conn = mysql.connect()
+	cursor = conn.cursor()
+	result = agregarTaxi(DataJson["id"], DataJson["nombre"], DataJson["fecha_de_nacimiento"], DataJson["sexo"], DataJson["correo"], DataJson["telefono"],cursor)
+	if result == "Done":
+		conn.commit()
+	cursor.close()
+	conn.close()
+	return result

@@ -63,6 +63,9 @@ class AdminTaxis extends Component {
 							<Button variant="contained" color="primary" onClick={this.backAdmin} className="GoBackB">
 								Go Back
 							</Button>
+							<Button variant="contained" color="primary" onClick={this.backAdmin} className="GoBackB">
+								Agregar Taxista
+							</Button>
 						</div>
 						<Card className='PaperStyle'>
 					      <Table>
