@@ -63,7 +63,8 @@ class AdminTaxis extends Component {
   	componentDidMount() {
   		axios.get(`${url}/taxiList`)
   		.then((response) => {
-  			const newData = response.data.map((taxi) => {
+  			const data = response.data;
+  			const newData = data.map(taxi => {
   				return(
   					createData(taxi.id, taxi.nombre, taxi.correo, taxi.fechaDeNacimiento, taxi.telefono, taxi.sexo)
   					)
