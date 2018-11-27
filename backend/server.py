@@ -1,8 +1,9 @@
 from flask import Flask, request
 from flask_cors import CORS
 from flaskext.mysql import MySQL
+import json
 from login import tryLogin
-from cliente import historialViajesCliente, viajeActualCliente
+from cliente import historialViajesCliente, viajeActualCliente, actualizarDatos
 from taxista import historialViajesTaxista, viajeActualTaxista
 app = Flask(__name__)
 mysql = MySQL(app)
@@ -48,8 +49,20 @@ def historialTaxista():
 	return historialViajesTaxista(idTaxista, cursor)
 
 @app.route('/actualTaxista', methods = ['GET'])
-def actualTaxista():
+def actualTaxista ():
 	idTaxista = request.args.get('idTaxista', None)
 	conn = mysql.connect()
 	cursor = conn.cursor()
 	return viajeActualTaxista(idTaxista, cursor)
+
+@app.route('/actualizarPerfil', methods = ['POST'])
+def actualizarPerfil():
+	DataJson = json.loads(request.data)
+	conn = mysql.connect()
+	cursor = conn.cursor()
+	result = actualizarDatos(DataJson["id"], DataJson["nombre"], DataJson["sexo"], DataJson["correo"], DataJson["telefono"],cursor)
+	if result == "Done":
+		conn.commit()
+	cursor.close()
+	conn.close()
+	return result
