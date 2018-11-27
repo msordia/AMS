@@ -44,7 +44,7 @@ def crearViaje(idCliente, origen, destino, fecha, cursor):
 
 	costo = random.randint(50,800)
 
-	query2 = "INSERT INTO Viaje VALUES(" + str(idViajeInt) + ", " + str(idCliente) + ", \"" + fecha + "\", \"" + origen + "\", , \"" + destino + "\", "  + str(costo) + ", 0);"
+	query2 = "INSERT INTO Viaje VALUES(" + str(idViajeInt) + ", " + str(result[0]) + ", " + str(idCliente) + ", \"" + fecha + "\", \"" + origen + "\", , \"" + destino + "\", "  + str(costo) + ", 0);"
 	cursor.execute(query2)
 	return "Done"
 
