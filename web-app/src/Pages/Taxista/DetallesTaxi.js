@@ -12,6 +12,11 @@ import { connect } from 'react-redux';
 import './DetallesTaxi.css';
 
 class DetallesTaxi extends Component {
+
+	actualizarPerfil = () => {
+		this.props.history.push('/actualizarPerfil');
+	}
+
 	render() {
 		return(
 			<div>
@@ -62,7 +67,7 @@ class DetallesTaxi extends Component {
 								</div>
 							</Paper>
 						</div>
-						<Button variant="contained" color="primary" onClick={this.logout} className="Login_Button">
+						<Button variant="contained" color="primary" onClick={this.actualizarPerfil} className="Login_Button">
 		              		Actualizar Perfil
 		            	</Button>
 					</Grid>

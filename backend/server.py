@@ -4,12 +4,13 @@ from flaskext.mysql import MySQL
 import json
 from login import tryLogin
 from cliente import historialViajesCliente, viajeActualCliente, actualizarDatos
-from taxista import historialViajesTaxista, viajeActualTaxista
+from taxista import historialViajesTaxista, viajeActualTaxista, agregarTaxi
+from administrador import taxiList, clienteList, eliminarTaxista, crearViaje
 app = Flask(__name__)
 mysql = MySQL(app)
 CORS(app)
 
-app.config['MYSQL_DATABASE_USER'] = 'test'
+app.config['MYSQL_DATABASE_USER'] = 'root'
 app.config['MYSQL_DATABASE_DB'] = 'TaxiUnico'
 app.config['MYSQL_DATABASE_HOST'] = 'localhost'
 app.config['MYSQL_DATABASE_PORT'] = 3306
@@ -55,6 +56,25 @@ def actualTaxista ():
 	cursor = conn.cursor()
 	return viajeActualTaxista(idTaxista, cursor)
 
+@app.route('/taxiList', methods = ['GET'])
+def ListaTaxis ():
+	conn = mysql.connect()
+	cursor = conn.cursor()
+	return taxiList(cursor)
+
+@app.route('/listaClientes', methods = ['GET'])
+def ListaClientes ():
+	conn = mysql.connect()
+	cursor = conn.cursor()
+	return clienteList(cursor)
+
+@app.route('/eliminarTaxista', methods = ['GET'])
+def delTaxista ():
+	idTaxista = request.args.get('idTaxista', None)
+	conn = mysql.connect()
+	cursor = conn.cursor()
+	return eliminarTaxista(idTaxista, cursor)
+
 @app.route('/actualizarPerfil', methods = ['POST'])
 def actualizarPerfil():
 	DataJson = json.loads(request.data)
@@ -67,12 +87,6 @@ def actualizarPerfil():
 	conn.close()
 	return result
 
-nombre VARCHAR(100),
-fechaNacimiento DATE,
-sexo VARCHAR(1),
-telefono VARCHAR(10),
-correo VARCHAR(100),
-
 @app.route('/agregarTaxi', methods = ['POST'])
 def agregarTaxi():
 	DataJson = json.loads(request.data)
@@ -84,3 +98,16 @@ def agregarTaxi():
 	cursor.close()
 	conn.close()
 	return result
+
+@app.route('/newTrip', methods = ['POST'])
+def newTrip():
+	DataJson = json.loads(request.data)
+	conn = mysql.connect()
+	cursor = conn.cursor()
+	result = crearViaje(DataJson["id"], DataJson["origen"], DataJson["destino"], DataJson["fecha"],cursor)
+	if result == "Done":
+		conn.commit()
+	cursor.close()
+	conn.close()
+	return result
+

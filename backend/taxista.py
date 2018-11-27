@@ -16,7 +16,7 @@ def historialViajesTaxista(idTaxi, cursor):
 	return resultString
 
 def viajeActualTaxista(idTaxi, cursor):
-	query = "SELECT p.nombre, v.Id_viaje, v.Origen, v.Destino, v.FechaYHora, v.Costo, t.Marca, t.Modelo, t.Placas, t.Colo, v.Estatus FROM Viaje v JOIN Taxi t ON v.Id_taxi = t.Id_taxi JOIN Persona p ON v.Id_cliente = p.id_persona  WHERE t.id_taxista = " + str(idTaxi)  + " AND (v.Estatus = 0 OR v.Estatus = 1);"
+	query = "SELECT p.nombre, v.Id_viaje, v.Origen, v.Destino, v.FechaYHora, v.Costo, t.Marca, t.Modelo, t.Placas, t.Color, v.Estatus FROM Viaje v JOIN Taxi t ON v.Id_taxi = t.Id_taxi JOIN Persona p ON v.Id_cliente = p.id_persona  WHERE t.id_taxista = " + str(idTaxi)  + " AND (v.Estatus = 0 OR v.Estatus = 1);"
 	cursor.execute(query);
 	result = cursor.fetchone();
 	if result == None:
