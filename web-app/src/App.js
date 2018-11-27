@@ -11,6 +11,7 @@ import DetallesUsuario from './Pages/Usuario/DetallesUsuario';
 import HistorialUsuario from './Pages/Usuario/HistorialUsuario';
 import ActualizarPerfil from './Pages/ActualizarPerfil';
 import RegistrarUsuario from './Pages/Usuario/RegistrarUsuario';
+import RegistrarTaxista from './Pages/Admin/RegistrarTaxista';
 import RegistrarFormaDePago from './Pages/Usuario/RegistrarFormaDePago';
 import ViajeActualUsuario from './Pages/Usuario/ViajeActualUsuario';
 import ViajeActualTaxista from './Pages/Taxista/ViajeActualTaxista';
@@ -102,6 +103,12 @@ class App extends Component {
               path ='/registrarUsuario'
               render={() => (
                   <RegistrarUsuario/>
+                )} />
+                <Route
+              exact
+              path ='/registrarTaxista'
+              render={() => (
+                  <RegistrarTaxista/>
                 )} />
                <Route
               exact

@@ -75,6 +75,9 @@ class AdminTaxis extends Component {
   		})
   	}
 
+		registrarse = () => {
+			this.props.history.push('/registrarTaxista');
+		}
 
 
 	render() {
@@ -86,7 +89,7 @@ class AdminTaxis extends Component {
 							<Button variant="contained" color="primary" onClick={this.backAdmin} className="GoBackB">
 								Crear Taxi
 							</Button>
-							<Button variant="contained" color="primary" onClick={this.backAdmin} className="GoBackB">
+							<Button variant="contained" color="primary" onClick={this.registrarse} className="GoBackB">
 								Agregar Taxista
 							</Button>
 						</div>

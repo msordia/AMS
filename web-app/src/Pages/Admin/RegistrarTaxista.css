@@ -1,0 +1,22 @@
+.ActualizarPaper {
+	padding-right: 20vw;
+	padding-left: 20vw;
+	padding-top: 10vw;
+}
+
+.ActualizarPaperInterno {
+	padding-right: 20px;
+	padding-left: 20px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+.ActualizarBottones {
+	padding-top: 20px;
+	padding-right: 10vw;
+	padding-left: 10vw;
+	justify-content: space-around;
+	flex-direction: row;
+	flex: 1;
+	display: flex;
+}
