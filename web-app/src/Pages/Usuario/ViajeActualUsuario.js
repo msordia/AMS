@@ -68,6 +68,18 @@ class ViajeActualUsuario extends Component {
 		})
 	}
 
+	cancelarViaje = () => {
+		axios.post(`${url}/cancelarViaje`, {
+			idViaje: this.state.idViaje
+		})
+		.then((response) => {
+			if(response.data == "Done"){
+				this.props.history.goBack();
+			}
+		})
+	}
+
+
 
 	renderViajeActual = () => {
 		if(this.state.viajeActual == false) {
@@ -157,7 +169,7 @@ class ViajeActualUsuario extends Component {
 							</Paper>
 						</div>
 						<div className="ButtonsDetalles">
-							<Button variant="contained" color="primary" onClick={this.actualizarPerfil} className="Login_Button">
+							<Button variant="contained" color="primary" onClick={this.cancelarViaje} className="Login_Button">
 			              		Cancelar Viaje
 			            	</Button>
 		            	</div>
