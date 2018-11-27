@@ -37,7 +37,7 @@ def crearViaje(idCliente, origen, destino, fecha, cursor):
 		return 'none';
 
 	query1 = "SELECT MAX Id_viaje FROM Viaje";
-	cursor.execute(query);
+	cursor.execute(query1);
 	idViaje = cursor.fetchone();
 	idViajeInt = idViaje[0]+1
 	costo = "SELECT FLOOR(RAND()*(800-40+1))+40";

@@ -5,7 +5,7 @@ import json
 from login import tryLogin
 from cliente import historialViajesCliente, viajeActualCliente, actualizarDatos
 from taxista import historialViajesTaxista, viajeActualTaxista, agregarTaxi
-from administrador import taxiList, clienteList, eliminarTaxista, crearViaje
+from administrador import taxiList, clienteList, eliminarTaxista, crearViaje, cancelarViaje
 app = Flask(__name__)
 mysql = MySQL(app)
 CORS(app)
