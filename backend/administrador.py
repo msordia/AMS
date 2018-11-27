@@ -22,7 +22,7 @@ def clienteList(cursor):
 	result = cursor.fetchone();
 	if result == None:
 		return 'none';
-	resultString = '['
+	resultJson = '['
 	while result != None:
 		resultJson += '{ "id":"' + str(result[0]) + '", "nombre":"' + result[1] + '", "fechaDeNacimiento": "' + str(result[2]) + '", "sexo": "' + result[3] + '", "telefono": "' + str(result[4]) + '", "correo": "' + result[5] + '"},'
 	resultString = resultString[:-1] + ']'
