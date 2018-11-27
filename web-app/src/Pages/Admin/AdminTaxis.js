@@ -11,12 +11,16 @@ import Paper from '@material-ui/core/Paper';
 import { withRouter } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 import './AdminTaxis.css';
+import { connect } from 'react-redux';
+import axios from 'axios'
 import PageHeader from '../../components/PageHeader'
 
+
+const url = 'http://127.0.0.1:5000'
+
 let id = 0;
-function createData(nombre, correo) {
-  id += 1;
-  return { id, nombre, correo};
+function createData(id, nombre, correo, fechaDeNacimiento, telefono, sexo) {
+  return { id, nombre, correo, fechaDeNacimiento, telefono, sexo};
 }
 
   const rows = [
@@ -47,11 +51,30 @@ class AdminTaxis extends Component {
 	constructor(props) {
     	super(props);
     	this.backAdmin = this.backAdmin.bind(this);
+    	this.state = {
+    		data: []
+    	}
   	}
 
   	backAdmin(event) {
   		this.props.history.goBack();
   	}
+
+  	componentDidMount() {
+  		axios.get(`${url}/taxiList`)
+  		.then((response) => {
+  			const newData = response.data.map((taxi) => {
+  				return(
+  					createData(taxi.id, taxi.nombre, taxi.correo, taxi.fechaDeNacimiento, taxi.telefono, taxi.sexo)
+  					)
+  			})
+  			this.setState({
+  				data: newData
+  			})
+  		})
+  	}
+
+
 
 	render() {
 			return (
@@ -61,7 +84,7 @@ class AdminTaxis extends Component {
 						<div className="GoBackB">
 							
 							<Button variant="contained" color="primary" onClick={this.backAdmin} className="GoBackB">
-								Go Back
+								Crear Taxi
 							</Button>
 						</div>
 						<Card className='PaperStyle'>
@@ -71,11 +94,14 @@ class AdminTaxis extends Component {
 					            <TableCell>ID</TableCell>
 					            <TableCell numeric>Nombre</TableCell>
 					            <TableCell numeric>Correo</TableCell>
+					            <TableCell numeric>Fecha De Nacimiento</TableCell>
+					            <TableCell numeric>Telefono</TableCell>
+					            <TableCell numeric>Sexo</TableCell>
 					            <TableCell>Ver Detalles</TableCell>
 					          </TableRow>
 					        </TableHead>
 					        <TableBody>
-					          {rows.map(row => {
+					          {this.state.data.map(row => {
 					            return (
 					              <TableRow key={row.id}>
 					              <TableCell numeric>{row.id}</TableCell>
@@ -83,6 +109,9 @@ class AdminTaxis extends Component {
 					                  {row.nombre}
 					                </TableCell>
 					                <TableCell numeric>{row.correo}</TableCell>
+					                <TableCell numeric>{row.fechaDeNacimiento}</TableCell>
+					            	<TableCell numeric>{row.telefono}</TableCell>
+					            	<TableCell numeric>{row.sexo}</TableCell>
 					                <TableCell> 
 					                	<Button variant="contained" color="primary" onClick={this.backAdmin}>
 					                		Ir
@@ -94,6 +123,9 @@ class AdminTaxis extends Component {
 					        </TableBody>
 					      </Table>
 					    </Card>
+					    <Button variant="contained" color="primary" onClick={this.backAdmin} className="GoBackB">
+								Go Back
+							</Button>
 					</div>
 				</div>
 			);
@@ -101,5 +133,22 @@ class AdminTaxis extends Component {
 
 }
 
+const mapStateToProps = state => {
+  return {
+    loggedIn: state.userReducer.loggedIn,
+    ID: state.userReducer.ID,
+    correo: state.userReducer.correo,
+    Nombre: state.userReducer.Nombre,
+    FechaNacimiento: state.userReducer.FechaNacimiento,
+    Sexo: state.userReducer.Sexo,
+    Telefono: state.userReducer.Telefono
+  };
+};
 
-export default withRouter(AdminTaxis);
+const mapDispatchtoProps = dispatch => {
+  return {
+      tryLogIn: (ID, correo, Nombre, FechaNacimiento, Sexo, Telefono) => dispatch({type: 'LogIn', payload: {loggedIn: true, ID, correo, Nombre, FechaNacimiento, Sexo, Telefono}})
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchtoProps)(withRouter(AdminTaxis));

@@ -54,6 +54,20 @@ class ViajeActualUsuario extends Component {
 		})
 	}
 
+	crearViaje = () => {
+		axios.post(`${url}/crearViaje`, {
+			idCliente: this.post.ID,
+			origen: this.state.origen,
+			destino: this.state.destino,
+			fecha: this.state.fecha
+		})
+		.then((response) => {
+			if(response.data == "Done"){
+				this.props.history.goBack();
+			}
+		})
+	}
+
 
 	renderViajeActual = () => {
 		if(this.state.viajeActual == false) {
@@ -98,13 +112,13 @@ class ViajeActualUsuario extends Component {
 			                className="TextFieldS"
 			                margin="dense"
 			                variant="outlined"
-			                type="date"
+			                type="datetime-local"
 			                onChange={(input) => {this.setState({ fecha: input.target.value })}}
 			                fullWidth
 			                value={this.state.fecha}
 			                color="primary"
 			            />
-			            <Button variant="contained" color="primary" onClick={this.actualizarPerfil} className="Login_Button">
+			            <Button variant="contained" color="primary" onClick={this.crearViaje} className="Login_Button">
 			              		Crear Viaje
 			            </Button>
 					</Paper>
