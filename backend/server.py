@@ -5,7 +5,7 @@ import json
 from login import tryLogin
 from cliente import historialViajesCliente, viajeActualCliente, actualizarDatos, agregarCliente
 from taxista import historialViajesTaxista, viajeActualTaxista, agregarTaxista
-from administrador import taxiList, clienteList, eliminarTaxista, crearViaje, cancelarViaje, comenzarViaje, terminarViaje, calificarViaje, encuestaList
+from administrador import taxiList, clienteList, eliminarTaxista, crearViaje, cancelarViaje, comenzarViaje
 app = Flask(__name__)
 mysql = MySQL(app)
 CORS(app)
@@ -89,15 +89,6 @@ def ListaClientes ():
 	conn.close()
 	return result
 
-@app.route('/encuestaList', methods = ['GET'])
-def ListaTaxis ():
-	conn = mysql.connect()
-	cursor = conn.cursor()
-	result = encuestaList(cursor)
-	cursor.close()
-	conn.close()
-	return result
-
 @app.route('/eliminarTaxista', methods = ['GET'])
 def delTaxista ():
 	idTaxista = request.args.get('idTaxista', None)
@@ -126,30 +117,6 @@ def startTrip ():
 	conn = mysql.connect()
 	cursor = conn.cursor()
 	result = comenzarViaje(DataJson["idViaje"], cursor)
-	if result == "Done":
-		conn.commit()
-	cursor.close()
-	conn.close()
-	return result
-
-@app.route('/terminarViaje', methods = ['POST'])
-def endTrip ():
-	DataJson = json.loads(request.data)
-	conn = mysql.connect()
-	cursor = conn.cursor()
-	result = terminarViaje(DataJson["idViaje"], cursor)
-	if result == "Done":
-		conn.commit()
-	cursor.close()
-	conn.close()
-	return result
-
-@app.route('/calificarViaje', methods = ['POST'])
-def rateTrip ():
-	DataJson = json.loads(request.data)
-	conn = mysql.connect()
-	cursor = conn.cursor()
-	result = calificarViaje(DataJson["idViaje"], DataJson["fecha"], DataJson["estrellas"], cursor)
 	if result == "Done":
 		conn.commit()
 	cursor.close()

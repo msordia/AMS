@@ -31,7 +31,6 @@ def agregarTaxista(nombre, nacimiento, sexo, correo, tel, pw, cursor):
 	idTaxista = cursor.fetchone();
 	idTaxistaInt = idTaxista[0]
 	idTaxistaInt += 1
-	
 	query = "INSERT INTO Persona VALUES(" + str(idTaxistaInt) + ",\"" + nombre + "\",\"" + nacimiento + "\",\"" + sexo + "\",\"" + tel + "\",\"" + correo + "\" ,\"" + pw + "\" );"
 	cursor.execute(query);
 	result = cursor.fetchone();
