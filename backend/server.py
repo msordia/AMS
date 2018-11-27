@@ -4,7 +4,7 @@ from flaskext.mysql import MySQL
 import json
 from login import tryLogin
 from cliente import historialViajesCliente, viajeActualCliente, actualizarDatos
-from taxista import historialViajesTaxista, viajeActualTaxista, agregarTaxi
+from taxista import historialViajesTaxista, viajeActualTaxista
 from administrador import taxiList, clienteList, eliminarTaxista, crearViaje
 app = Flask(__name__)
 mysql = MySQL(app)
@@ -26,61 +26,88 @@ def login():
 	password = request.args.get('password', None)
 	conn = mysql.connect()
 	cursor = conn.cursor()
-	return tryLogin(username, password, cursor)
+	result = tryLogin(username, password, cursor)
+	cursor.close()
+	conn.close()
+	return result
 
 @app.route('/historialCliente', methods = ['GET'])
 def historialCliente():
 	idCliente = request.args.get('idCliente', None)
 	conn = mysql.connect()
 	cursor = conn.cursor()
-	return historialViajesCliente(idCliente, cursor)
+	result = historialViajesCliente(idCliente, cursor)
+	cursor.close()
+	conn.close()
+	return result
 	
 @app.route('/actualCliente', methods = ['GET'])
 def actualCliente():
 	idCliente = request.args.get('idCliente', None)
 	conn = mysql.connect()
 	cursor = conn.cursor()
-	return viajeActualCliente(idCliente, cursor)
+	result = viajeActualCliente(idCliente, cursor)
+	cursor.close()
+	conn.close()
+	return result
 
 @app.route('/historialTaxista', methods = ['GET'])
 def historialTaxista():
 	idTaxista = request.args.get('idTaxista', None)
 	conn = mysql.connect()
 	cursor = conn.cursor()
-	return historialViajesTaxista(idTaxista, cursor)
+	result = historialViajesTaxista(idTaxista, cursor)
+	cursor.close()
+	conn.close()
+	return result
 
 @app.route('/actualTaxista', methods = ['GET'])
 def actualTaxista ():
 	idTaxista = request.args.get('idTaxista', None)
 	conn = mysql.connect()
 	cursor = conn.cursor()
-	return viajeActualTaxista(idTaxista, cursor)
+	result = viajeActualTaxista(idTaxista, cursor)
+	cursor.close()
+	conn.close()
+	return result
 
 @app.route('/taxiList', methods = ['GET'])
 def ListaTaxis ():
 	conn = mysql.connect()
 	cursor = conn.cursor()
-	return taxiList(cursor)
+	result = taxiList(cursor)
+	cursor.close()
+	conn.close()
+	return result
 
 @app.route('/listaClientes', methods = ['GET'])
 def ListaClientes ():
 	conn = mysql.connect()
 	cursor = conn.cursor()
-	return clienteList(cursor)
+	result = clienteList(cursor)
+	cursor.close()
+	conn.close()
+	return result
 
 @app.route('/eliminarTaxista', methods = ['GET'])
 def delTaxista ():
 	idTaxista = request.args.get('idTaxista', None)
 	conn = mysql.connect()
 	cursor = conn.cursor()
-	return eliminarTaxista(idTaxista, cursor)
+	result = eliminarTaxista(idTaxista, cursor)
+	cursor.close()
+	conn.close()
+	return result
 
 @app.route('/cancelarViaje', methods = ['GET'])
 def cancelTrip ():
 	idViaje = request.args.get('idViaje', None)
 	conn = mysql.connect()
 	cursor = conn.cursor()
-	return cancelarViaje(idViaje, cursor)
+	result = cancelarViaje(idViaje, cursor)
+	cursor.close()
+	conn.close()
+	return result
 
 @app.route('/actualizarPerfil', methods = ['POST'])
 def actualizarPerfil():
