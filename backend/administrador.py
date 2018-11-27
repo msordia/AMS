@@ -8,8 +8,9 @@ def taxiList(cursor):
 	result = cursor.fetchone();
 	if result == None:
 		return 'none';
+	resultString = '['
 	while result != None:
-		resultString = '{ "id":"' + str(result[0]) + '", "nombre":"' + result[1] + '", "fechaDeNacimiento": "' + str(result[2]) + '", "sexo": "' + result[3] + '", "telefono": "' + str(result[4]) + '", "correo": "' + result[5] + '" + },'
+		resultString += '{ "id":"' + str(result[0]) + '", "nombre":"' + result[1] + '", "fechaDeNacimiento": "' + str(result[2]) + '", "sexo": "' + result[3] + '", "telefono": "' + str(result[4]) + '", "correo": "' + result[5] + '"},'
 		result = cursor.fetchone()
 	resultString = resultString[:-1] + ']'
 	return resultString
@@ -21,8 +22,9 @@ def clienteList(cursor):
 	result = cursor.fetchone();
 	if result == None:
 		return 'none';
+	resultString = '['
 	while result != None:
-		resultJson = '{ "id":"' + str(result[0]) + '", "nombre":"' + result[1] + '", "fechaDeNacimiento": "' + str(result[2]) + '", "sexo": "' + result[3] + '", "telefono": "' + str(result[4]) + '", "correo": "' + result[5] + '" + },'
+		resultJson += '{ "id":"' + str(result[0]) + '", "nombre":"' + result[1] + '", "fechaDeNacimiento": "' + str(result[2]) + '", "sexo": "' + result[3] + '", "telefono": "' + str(result[4]) + '", "correo": "' + result[5] + '"},'
 	resultString = resultString[:-1] + ']'
 	return resultString
 
@@ -36,9 +38,14 @@ def crearViaje(idCliente, origen, destino, fecha, cursor):
 	query1 = "SELECT MAX Id_viaje FROM Viaje";
 	cursor.execute(query);
 	idViaje = cursor.fetchone();
-	idViaje++;
-	costo = SELECT FLOOR(RAND()*(800-40+1))+40 
+	idViajeInt = idViaje[0]+1
+	costo = "SELECT FLOOR(RAND()*(800-40+1))+40";
 
-	query2 = "INSERT INTO Viaje VALUES(" + str(idViaje) + ", " + str(idCliente) + ", \"" + fecha + "\", \"" + origen + "\", , \"" + destino + "\", "  + str(costo) + ", 0);"
+	query2 = "INSERT INTO Viaje VALUES(" + str(idViajeInt) + ", " + str(idCliente) + ", \"" + fecha + "\", \"" + origen + "\", , \"" + destino + "\", "  + str(costo) + ", 0);"
 	cursor.execute(query2)
+	return "Done"
+
+def eliminarTaxista(idTaxista, cursor):
+	query = "UPDATE Taxista SET id_taxista = \"" + idTaxista + "\", activo = 0 WHERE id_taxista = " + idTaxista + ";"
+	cursor.execute(query)
 	return "Done"

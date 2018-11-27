@@ -56,7 +56,7 @@ def actualTaxista ():
 	cursor = conn.cursor()
 	return viajeActualTaxista(idTaxista, cursor)
 
-@app.route('/listaTaxis', methods = ['GET'])
+@app.route('/taxiList', methods = ['GET'])
 def ListaTaxis ():
 	conn = mysql.connect()
 	cursor = conn.cursor()

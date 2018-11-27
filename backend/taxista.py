@@ -24,3 +24,4 @@ def viajeActualTaxista(idTaxi, cursor):
 	if result != None:
 		resultString = '{ "nombre": "' + result[0] + '", "id_viaje": "' + str(result[1]) + '", "origen": "' + result[2] + '", "destino": "' + result[3] + '", "fecha": "' + str(result[4]) + '", "costo": "' + str(result[5]) + '", "marca": "' + str(result[6]) + '", "modelo": "' + str(result[7]) + '", "placas": "' + str(result[8]) + '", "color": "' + str(result[9]) + '" , "estatus": "' + str(result[10]) + '" }'
 		return resultString
+
