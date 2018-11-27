@@ -34,8 +34,8 @@ class ActualizarPerfil extends Component {
 		})
 		.then((response) => {
 			if(response.data == "Done"){
+				this.props.actualizarPerfil(this.state.Nombre, this.state.Correo, this.state.Sexo, this.state.Telefono, this.props.ID, this.props.FechaNacimiento);
 				this.props.history.goBack();
-				this.props.actualizarPerfil(this.state.nombre, this.state.correo, this.state.sexo, this.state.telefono, this.props.ID, this.props.FechaNacimiento);
 			}
 		})
 	}
