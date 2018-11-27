@@ -22,7 +22,8 @@ class RegistrarUsuario extends Component {
 			Sexo: '',
 			Correo: '',
 			Telefono: '',
-			Password: ''
+			Password: '',
+			Pago: ''
 		}
 	}
 
@@ -34,7 +35,8 @@ class RegistrarUsuario extends Component {
 			sexo: this.state.Sexo,
 			telefono: this.state.Telefono,
 			correo: this.state.Correo,
-			pw: this.state.Password
+			pw: this.state.Password,
+			pago: this.state.Pago
 		})
 		.then((response) => {
 			if(response.data == "Done"){
@@ -122,6 +124,17 @@ class RegistrarUsuario extends Component {
 					                onChange={(input) => {this.setState({Password: input.target.value })}}
 					                fullWidth
 					                value={this.state.Password}
+					                color="primary"
+					            />
+					            <TextField
+					                id="Pago"
+					                label="Numero de Tarjeta"
+					                className="TextFieldS"
+					                margin="dense"
+					                variant="outlined"
+					                onChange={(input) => {this.setState({Pago: input.target.value })}}
+					                fullWidth
+					                value={this.state.Pago}
 					                color="primary"
 					            />
 							    <div className="ActualizarBottones">
